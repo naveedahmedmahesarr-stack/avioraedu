@@ -2,20 +2,12 @@
 
 import { useEffect, useRef, useState } from "react";
 import { Icon, type IconName } from "@/components/ui/Icon";
+import { useUi } from "@/i18n/LocaleProvider";
 
-const steps: { title: string; body: string; icon: IconName }[] = [
-  { title: "Free Consultation", body: "A conversation about your goals, background, budget and preferred destinations.", icon: "users" },
-  { title: "Profile Assessment", body: "We review your academic records, language scores and experience against typical entry requirements.", icon: "eye" },
-  { title: "University & Program Selection", body: "A realistic shortlist that balances ambition, eligibility, cost and career goals.", icon: "compass" },
-  { title: "Document Preparation", body: "Guidance on CVs, motivation letters, certificates, translations and recognition steps.", icon: "file" },
-  { title: "Application Submission", body: "Support submitting complete, on-time applications via university portals or uni-assist.", icon: "send" },
-  { title: "Admission Decision", body: "Universities make the decision. We help you understand offers and next steps.", icon: "graduation" },
-  { title: "Visa Guidance", body: "Clear explanations of requirements such as financial proof and health insurance. Decisions rest with the authorities.", icon: "passport" },
-  { title: "Pre-Departure Support", body: "Accommodation search tips, packing lists, travel planning and what to expect on arrival.", icon: "luggage" },
-  { title: "Arrival in Europe", body: "Help with first steps like address registration, bank account and enrolment.", icon: "plane" },
-];
+const icons: IconName[] = ["users", "eye", "compass", "file", "send", "graduation", "passport", "luggage", "plane"];
 
 export function AdmissionTimeline() {
+  const t = useUi().timeline;
   const ref = useRef<HTMLOListElement>(null);
   const [fill, setFill] = useState(0);
   const [activeStep, setActiveStep] = useState(0);
@@ -55,7 +47,7 @@ export function AdmissionTimeline() {
       <div aria-hidden className="absolute bottom-0 left-6 top-0 w-px bg-ivory/10 md:left-1/2">
         <div className="w-full origin-top bg-gradient-to-b from-gold-300 to-gold-500" style={{ height: `${fill * 100}%` }} />
       </div>
-      {steps.map((s, i) => {
+      {t.steps.map((s, i) => {
         const on = i <= activeStep;
         const right = i % 2 === 1;
         return (
@@ -66,11 +58,13 @@ export function AdmissionTimeline() {
                 on ? "border-gold-400 bg-navy-900 text-gold-300 shadow-[0_0_0_8px_rgba(194,154,82,.12)]" : "border-ivory/15 bg-navy-950 text-ivory/40"
               }`}
             >
-              <Icon name={s.icon} className="size-5" />
+              <Icon name={icons[i]} className="size-5" />
             </span>
             <div className={`${right ? "md:col-start-2" : "md:text-right"} transition-all duration-700 ${on ? "opacity-100" : "opacity-45"}`}>
-              <p className="eyebrow text-gold-300">Step {String(i + 1).padStart(2, "0")}</p>
-              <h3 className="mt-3 text-3xl text-ivory md:text-4xl">{s.title}</h3>
+              <p className="eyebrow text-gold-300">
+                {t.step} {String(i + 1).padStart(2, "0")}
+              </p>
+              <h3 className="mt-3 text-3xl text-ivory [hyphens:auto] md:text-4xl">{s.title}</h3>
               <p className={`mt-3 max-w-md leading-relaxed text-navy-300 ${right ? "" : "md:ml-auto"}`}>{s.body}</p>
             </div>
           </li>

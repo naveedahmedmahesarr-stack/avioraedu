@@ -3,16 +3,16 @@ import type { ConsultationInput } from "./content/schemas";
 
 /**
  * Optional email notification via Resend's REST API.
- * CONFIGURATION REQUIRED: RESEND_API_KEY, CONSULTATION_TO_EMAIL, CONSULTATION_FROM_EMAIL
- * (the from-address domain must be verified in Resend).
+ * CONFIGURATION REQUIRED: RESEND_API_KEY and CONSULTATION_FROM_EMAIL (domain verified in Resend).
+ * Recipient: CONSULTATION_TO_EMAIL, or the business email from Admin → Settings when that is unset.
  */
-export function emailConfigured() {
-  return Boolean(process.env.RESEND_API_KEY && process.env.CONSULTATION_TO_EMAIL && process.env.CONSULTATION_FROM_EMAIL);
+export function emailConfigured(fallbackTo?: string) {
+  return Boolean(process.env.RESEND_API_KEY && process.env.CONSULTATION_FROM_EMAIL && (process.env.CONSULTATION_TO_EMAIL || fallbackTo));
 }
 
 const esc = (s: string) => s.replace(/[&<>"']/g, (c) => `&#${c.charCodeAt(0)};`);
 
-export async function sendConsultationEmail(input: ConsultationInput) {
+export async function sendConsultationEmail(input: ConsultationInput, fallbackTo?: string) {
   const rows = (
     [
       ["Name", input.fullName],
@@ -34,9 +34,9 @@ export async function sendConsultationEmail(input: ConsultationInput) {
     headers: { Authorization: `Bearer ${process.env.RESEND_API_KEY}`, "Content-Type": "application/json" },
     body: JSON.stringify({
       from: process.env.CONSULTATION_FROM_EMAIL,
-      to: [process.env.CONSULTATION_TO_EMAIL],
+      to: [process.env.CONSULTATION_TO_EMAIL || fallbackTo],
       reply_to: input.email,
-      subject: `New consultation request — ${input.fullName} (${input.destination})`,
+      subject: `New consultation request — ${input.fullName.replace(/[\r\n]/g, " ")} (${input.destination.replace(/[\r\n]/g, " ")})`,
       html: `<h2>New consultation request</h2><table>${rows}</table>`,
     }),
   });

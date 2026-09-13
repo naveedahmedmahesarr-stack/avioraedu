@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import { useLp, useUi } from "@/i18n/LocaleProvider";
 
 const KEY = "aviora-consent-v1";
 
@@ -19,11 +20,13 @@ export function readConsent(): "accepted" | "declined" | null {
 }
 
 export function CookieBanner() {
+  const t = useUi().cookie;
+  const href = useLp();
   const [visible, setVisible] = useState(false);
   useEffect(() => {
     if (readConsent() === null) {
-      const t = setTimeout(() => setVisible(true), 1800);
-      return () => clearTimeout(t);
+      const timer = setTimeout(() => setVisible(true), 1800);
+      return () => clearTimeout(timer);
     }
   }, []);
 
@@ -38,22 +41,21 @@ export function CookieBanner() {
   return (
     <div
       role="region"
-      aria-label="Cookie preferences"
-      className="animate-fade-up fixed inset-x-3 bottom-3 z-[60] mx-auto max-w-xl rounded-2xl border border-gold-300/20 bg-navy-950/95 p-5 text-ivory shadow-2xl backdrop-blur-xl sm:bottom-6"
+      aria-label={t.region}
+      className="animate-fade-up fixed inset-x-3 bottom-3 z-[60] mx-auto flex max-w-2xl flex-col gap-3 rounded-2xl border border-gold-300/20 bg-navy-950/95 p-4 text-ivory shadow-2xl backdrop-blur-xl sm:bottom-6 sm:flex-row sm:items-center sm:gap-5 sm:p-5 print:hidden"
     >
-      <p className="text-sm leading-relaxed text-ivory/85">
-        We use only essential storage to run this site. Optional analytics are not enabled. See our{" "}
-        <Link href="/legal/cookie-policy" className="text-gold-300 underline underline-offset-4">
-          Cookie Policy
+      <p className="text-xs leading-relaxed text-ivory/85 sm:text-sm">
+        {t.text}{" "}
+        <Link href={href("/legal/cookie-policy")} className="text-gold-300 underline underline-offset-4">
+          {t.policy}
         </Link>
-        .
       </p>
-      <div className="mt-4 flex flex-wrap gap-3">
-        <button type="button" className="btn btn-outline !min-h-11 !border-ivory/25 !text-ivory" onClick={() => choose("declined")}>
-          Essential only
+      <div className="flex shrink-0 gap-2">
+        <button type="button" className="btn btn-outline !min-h-10 flex-1 !px-4 !text-[0.78rem] !border-ivory/25 !text-ivory sm:flex-none" onClick={() => choose("declined")}>
+          {t.essential}
         </button>
-        <button type="button" className="btn btn-gold !min-h-11" onClick={() => choose("accepted")}>
-          Accept
+        <button type="button" className="btn btn-gold !min-h-10 flex-1 !px-5 !text-[0.78rem] sm:flex-none" onClick={() => choose("accepted")}>
+          {t.accept}
         </button>
       </div>
     </div>

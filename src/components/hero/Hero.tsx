@@ -9,6 +9,7 @@ import { HeroFallback } from "./HeroFallback";
 import { Flag } from "@/components/ui/Flag";
 import { Icon } from "@/components/ui/Icon";
 import { destinationMarkers, sourceMarkets } from "./geo";
+import { useLp, useUi } from "@/i18n/LocaleProvider";
 
 const Hero3D = dynamic(() => import("./Hero3D"), { ssr: false });
 
@@ -54,6 +55,8 @@ export function Hero({ headline, subheadline, message }: { headline: string; sub
   const [ready, setReady] = useState(false);
   const [active, setActive] = useState(true);
   const [chapter, setChapter] = useState(0);
+  const t = useUi().hero;
+  const href = useLp();
 
   // Pause rendering when the hero is off-screen.
   useEffect(() => {
@@ -151,28 +154,29 @@ export function Hero({ headline, subheadline, message }: { headline: string; sub
               style={{ opacity: "clamp(0, calc((0.46 - var(--p)) * 10), 1)", transform: "translateY(calc(max(0, var(--p) - 0.36) * -300px))" }}
             >
               <p className="eyebrow animate-fade-up flex items-center gap-3 text-gold-300" style={{ animationDelay: "300ms" }}>
-                <span className="h-px w-10 bg-gold-300/60" /> Germany · Italy · Poland · Portugal · Austria
+                <span className="h-px w-10 bg-gold-300/60" /> {t.eyebrow}
               </p>
               <h1
                 id="hero-title"
-                className="animate-fade-up mt-5 max-w-4xl text-[clamp(2.8rem,8vw,6.6rem)] uppercase leading-[0.92] tracking-[-0.01em]"
+                className="animate-fade-up mt-6 max-w-[15ch] text-[clamp(2.9rem,7.4vw,6.2rem)] leading-[0.95] tracking-[-0.02em]"
                 style={{ animationDelay: "450ms" }}
               >
                 {headline.replace(/\.$/, "")}
                 <span className="gold-text">.</span>
               </h1>
-              <p className="animate-fade-up mt-5 font-display text-2xl italic text-gold-300 md:text-3xl" style={{ animationDelay: "600ms" }}>
-                {subheadline}
-              </p>
-              <p className="animate-fade-up mt-4 max-w-xl text-base leading-relaxed text-ivory/80 md:text-lg" style={{ animationDelay: "700ms" }}>
-                {message}
-              </p>
-              <div className="animate-fade-up mt-8 flex flex-col gap-3 sm:flex-row" style={{ animationDelay: "850ms" }}>
-                <Link href="/destinations" className="btn btn-gold">
-                  Explore Study Options <Icon name="arrowRight" className="size-4" />
+              <div className="animate-fade-up mt-7 flex max-w-2xl gap-5" style={{ animationDelay: "650ms" }}>
+                <span aria-hidden className="mt-2 hidden h-auto w-px shrink-0 bg-gradient-to-b from-gold-300/70 to-transparent sm:block" />
+                <div>
+                  <p className="font-display text-2xl italic text-gold-300 md:text-[1.7rem]">{subheadline}</p>
+                  <p className="mt-3 max-w-xl text-base leading-relaxed text-ivory/80 md:text-lg">{message}</p>
+                </div>
+              </div>
+              <div className="animate-fade-up mt-9 flex flex-col gap-3 sm:flex-row" style={{ animationDelay: "850ms" }}>
+                <Link href={href("/contact#consultation")} className="btn btn-gold">
+                  {t.primary} <Icon name="arrowRight" className="size-4" />
                 </Link>
-                <Link href="/contact#consultation" className="btn btn-ghost-light">
-                  Book a Consultation
+                <Link href={href("/services")} className="btn btn-ghost-light">
+                  {t.secondary}
                 </Link>
               </div>
             </div>
@@ -185,22 +189,22 @@ export function Hero({ headline, subheadline, message }: { headline: string; sub
             >
               <div className="glass-dark grid max-w-3xl gap-6 rounded-3xl p-6 sm:grid-cols-2 md:p-8">
                 <div>
-                  <h2 className="eyebrow text-navy-300">Where students come from</h2>
+                  <h2 className="eyebrow text-navy-300">{t.sourceTitle}</h2>
                   <ul className="mt-4 space-y-2.5">
                     {sourceMarkets.map((s) => (
                       <li key={s.key} className="flex items-center gap-3 text-sm text-ivory/90">
-                        <Flag code={s.flag} decorative /> {s.label}
+                        <Flag code={s.flag} decorative /> {t.markets[s.key] ?? s.label}
                       </li>
                     ))}
                   </ul>
                 </div>
                 <div className="sm:border-l sm:border-gold-300/15 sm:pl-6">
-                  <h2 className="eyebrow text-gold-300">Where students study</h2>
+                  <h2 className="eyebrow text-gold-300">{t.destTitle}</h2>
                   <ul className="mt-4 space-y-2.5">
                     {destinationMarkers.map((d) => (
                       <li key={d.key} className={`flex items-center gap-3 text-sm ${d.primary ? "font-semibold text-gold-300" : "text-ivory/90"}`}>
-                        <Flag code={d.flag} decorative /> {d.label}
-                        {d.primary && <span className="eyebrow ml-auto !text-[0.6rem] text-gold-400">Primary</span>}
+                        <Flag code={d.flag} decorative /> {t.dests[d.key] ?? d.label}
+                        {d.primary && <span className="eyebrow ml-auto !text-[0.6rem] text-gold-400">{t.primaryDest}</span>}
                       </li>
                     ))}
                   </ul>
@@ -212,20 +216,21 @@ export function Hero({ headline, subheadline, message }: { headline: string; sub
               className="container-x absolute inset-x-0 bottom-[12svh]"
               style={{ opacity: "clamp(0, min((var(--p) - 0.62) * 14, (0.78 - var(--p)) * 14), 1)" }}
             >
-              <p className="eyebrow text-gold-300">Chapter · Berlin</p>
+              <p className="eyebrow text-gold-300">{t.berlinEyebrow}</p>
               <h2 className="mt-4 max-w-2xl text-[clamp(2.4rem,6vw,4.8rem)] leading-none">
-                A capital of <em className="gold-text not-italic">science</em>, culture and opportunity.
+                {t.berlinTitle} <em className="gold-text not-italic">{t.berlinEm}</em>
+                {t.berlinTitleEnd}
               </h2>
-              <p className="mt-4 max-w-lg text-ivory/75">From the Fernsehturm to the Brandenburger Tor — the city where many international journeys begin.</p>
+              <p className="mt-4 max-w-lg text-ivory/75">{t.berlinBody}</p>
             </div>
 
             <div
               className="container-x absolute inset-x-0 bottom-[12svh]"
               style={{ opacity: "clamp(0, min((var(--p) - 0.78) * 14, (0.9 - var(--p)) * 14), 1)" }}
             >
-              <p className="eyebrow text-gold-300">Chapter · Campus</p>
-              <h2 className="mt-4 max-w-2xl text-[clamp(2.4rem,6vw,4.8rem)] leading-none">From the city skyline to your lecture hall.</h2>
-              <p className="mt-4 max-w-lg text-ivory/75">Libraries, laboratories and a genuinely international student community.</p>
+              <p className="eyebrow text-gold-300">{t.campusEyebrow}</p>
+              <h2 className="mt-4 max-w-2xl text-[clamp(2.4rem,6vw,4.8rem)] leading-none">{t.campusTitle}</h2>
+              <p className="mt-4 max-w-lg text-ivory/75">{t.campusBody}</p>
             </div>
 
             <div
@@ -235,18 +240,14 @@ export function Hero({ headline, subheadline, message }: { headline: string; sub
               <p className="font-display text-[clamp(2.6rem,7vw,5.5rem)] tracking-[0.2em]">
                 AVIORA <span className="gold-text">EDU</span>
               </p>
-              <p className="mt-3 text-ivory/75">Guidance from application to arrival.</p>
-              <Link
-                href="/contact#consultation"
-                className="btn btn-gold mt-7"
-                tabIndex={chapter === CHAPTERS.length - 1 ? 0 : -1}
-              >
-                Book a Consultation
+              <p className="mt-3 text-ivory/75">{t.brandBody}</p>
+              <Link href={href("/contact#consultation")} className="btn btn-gold mt-7" tabIndex={chapter === CHAPTERS.length - 1 ? 0 : -1}>
+                {t.primary}
               </Link>
             </div>
 
             {/* Progress rail */}
-            <nav aria-label="Hero story chapters" className="absolute right-4 top-1/2 hidden -translate-y-1/2 md:right-8 md:block">
+            <nav aria-label={t.chaptersAria} className="absolute right-4 top-1/2 hidden -translate-y-1/2 md:right-8 md:block">
               <ol className="flex flex-col gap-4">
                 {CHAPTERS.map((c, i) => (
                   <li key={c.id}>
@@ -259,7 +260,7 @@ export function Hero({ headline, subheadline, message }: { headline: string; sub
                       <span
                         className={`eyebrow !text-[0.6rem] transition-opacity ${chapter === i ? "text-gold-300 opacity-100" : "text-ivory/60 opacity-0 group-hover:opacity-100 group-focus-visible:opacity-100"}`}
                       >
-                        {c.label}
+                        {t.chapters[c.id] ?? c.label}
                       </span>
                       <span className={`block rounded-full transition-all duration-500 ${chapter === i ? "h-6 w-1 bg-gold-400" : "size-1 bg-ivory/40"}`} />
                     </button>
@@ -273,7 +274,7 @@ export function Hero({ headline, subheadline, message }: { headline: string; sub
               className="absolute bottom-5 left-1/2 flex -translate-x-1/2 flex-col items-center gap-2 text-ivory/60"
               style={{ opacity: "clamp(0, calc((0.4 - var(--p)) * 10), 1)" }}
             >
-              <span className="eyebrow !text-[0.58rem]">Scroll to begin the journey</span>
+              <span className="eyebrow !text-[0.58rem]">{t.scroll}</span>
               <span className="h-10 w-px bg-gradient-to-b from-gold-300 to-transparent" />
             </div>
           </div>

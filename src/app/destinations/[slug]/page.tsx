@@ -9,42 +9,52 @@ import { ConsultationCTA } from "@/components/sections/ConsultationCTA";
 import { Reveal, SectionHeading } from "@/components/ui/Reveal";
 import { Icon } from "@/components/ui/Icon";
 import { Flag } from "@/components/ui/Flag";
+import { getLocale } from "@/i18n/server";
+import { lp } from "@/i18n/locales";
+import { pageMeta } from "@/i18n/meta";
+import { term, tr, trAll } from "@/i18n/content";
 
 async function getDestination(slug: string) {
   const all = await list("destinations", { publishedOnly: true });
   return all.find((d) => d.slug === slug) ?? null;
 }
 
+const copy = {
+  en: { studyIn: (n: string) => `Study in ${n}`, eyebrow: (n: string) => `Study destination · ${n}`, destinations: "Destinations", benefits: "Study benefits", lifestyle: "Lifestyle", cities: "Major student cities", unis: "Universities", unisIn: (n: string) => `Universities in ${n}`, desc: (tag: string, n: string) => `${tag} Universities, study benefits and student life in ${n} for international students.`, notFound: "Destination not found" },
+  de: { studyIn: (n: string) => `Studieren in ${n}`, eyebrow: (n: string) => `Studienziel · ${n}`, destinations: "Studienziele", benefits: "Vorteile für Studierende", lifestyle: "Lebensgefühl", cities: "Wichtige Studentenstädte", unis: "Hochschulen", unisIn: (n: string) => `Hochschulen in ${n}`, desc: (tag: string, n: string) => `${tag} Hochschulen, Vorteile und Studierendenleben in ${n} für internationale Studierende.`, notFound: "Studienziel nicht gefunden" },
+};
+
 export async function generateMetadata(props: PageProps<"/destinations/[slug]">): Promise<Metadata> {
-  const { slug } = await props.params;
-  const d = await getDestination(slug);
-  if (!d) return { title: "Destination not found" };
-  return {
-    title: `Study in ${d.name}`,
-    description: `${d.tagline} Universities, study benefits and student life in ${d.name} for international students.`,
-    alternates: { canonical: `/destinations/${d.slug}` },
-  };
+  await connection();
+  const [{ slug }, locale] = await Promise.all([props.params, getLocale()]);
+  const raw = await getDestination(slug);
+  const c = copy[locale];
+  if (!raw) return { title: c.notFound };
+  const d = tr(raw, locale);
+  return pageMeta(locale, `/destinations/${d.slug}`, c.studyIn(d.name), c.desc(d.tagline, d.name));
 }
 
 export default async function DestinationPage(props: PageProps<"/destinations/[slug]">) {
   await connection();
-  const { slug } = await props.params;
-  if (slug === "germany") redirect("/study-in-germany");
-  const d = await getDestination(slug);
-  if (!d) notFound();
-  const universities = (await list("universities", { publishedOnly: true })).filter((u) => u.country === d.country);
+  const [{ slug }, locale] = await Promise.all([props.params, getLocale()]);
+  if (slug === "germany") redirect(lp(locale, "/study-in-germany"));
+  const raw = await getDestination(slug);
+  if (!raw) notFound();
+  const d = tr(raw, locale);
+  const c = copy[locale];
+  const universities = trAll((await list("universities", { publishedOnly: true })).filter((u) => u.country === raw.country), locale);
 
   return (
     <>
       <PageHeader
         crumbs={[
-          { name: "Destinations", path: "/destinations" },
+          { name: c.destinations, path: "/destinations" },
           { name: d.name, path: `/destinations/${d.slug}` },
         ]}
-        eyebrow={`Study destination · ${d.name}`}
+        eyebrow={c.eyebrow(d.name)}
         title={
           <span className="inline-flex flex-wrap items-center gap-5">
-            <Flag code={d.flag} className="h-10 w-14" /> Study in {d.name}.
+            <Flag code={d.flag} className="h-10 w-14" /> {c.studyIn(d.name)}.
           </span>
         }
         intro={d.tagline}
@@ -58,7 +68,7 @@ export default async function DestinationPage(props: PageProps<"/destinations/[s
               <ul className="mt-12 grid grid-cols-2 gap-4">
                 {d.gallery.map((src, i) => (
                   <li key={src} className="relative aspect-[4/3] overflow-hidden rounded-2xl">
-                    <Image src={src} alt={`${d.name} — image ${i + 1}`} fill sizes="(min-width:1024px) 30vw, 50vw" className="object-cover" />
+                    <Image src={src} alt={`${d.name} — ${i + 1}`} fill sizes="(min-width:1024px) 30vw, 50vw" className="object-cover" />
                   </li>
                 ))}
               </ul>
@@ -66,7 +76,7 @@ export default async function DestinationPage(props: PageProps<"/destinations/[s
           </Reveal>
           <Reveal delay={120} className="space-y-10">
             <div>
-              <h2 className="eyebrow text-gold-600">Study benefits</h2>
+              <h2 className="eyebrow text-gold-600">{c.benefits}</h2>
               <ul className="mt-5 space-y-4">
                 {d.benefits.map((b) => (
                   <li key={b} className="flex gap-3 text-stone">
@@ -76,7 +86,7 @@ export default async function DestinationPage(props: PageProps<"/destinations/[s
               </ul>
             </div>
             <div>
-              <h2 className="eyebrow text-gold-600">Lifestyle</h2>
+              <h2 className="eyebrow text-gold-600">{c.lifestyle}</h2>
               <ul className="mt-5 space-y-3 text-stone">
                 {d.lifestyle.map((l) => (
                   <li key={l}>{l}</li>
@@ -84,8 +94,8 @@ export default async function DestinationPage(props: PageProps<"/destinations/[s
               </ul>
             </div>
             <div>
-              <h2 className="eyebrow text-gold-600">Major student cities</h2>
-              <p className="mt-5 font-display text-2xl text-navy-900">{d.cities.join(" · ")}</p>
+              <h2 className="eyebrow text-gold-600">{c.cities}</h2>
+              <p className="mt-5 font-display text-2xl text-navy-900">{d.cities.map((x) => term(x, locale)).join(" · ")}</p>
             </div>
           </Reveal>
         </div>
@@ -93,14 +103,14 @@ export default async function DestinationPage(props: PageProps<"/destinations/[s
       {universities.length > 0 && (
         <section className="bg-sand/50 py-24 md:py-32">
           <div className="container-x">
-            <SectionHeading eyebrow="Universities" title={`Universities in ${d.name}`} />
+            <SectionHeading eyebrow={c.unis} title={c.unisIn(d.name)} />
             <div className="mt-12">
               <UniversityExplorer universities={universities} />
             </div>
           </div>
         </section>
       )}
-      <ConsultationCTA defaultDestination={d.name} />
+      <ConsultationCTA defaultDestination={raw.country} />
     </>
   );
 }

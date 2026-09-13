@@ -7,7 +7,7 @@ export const siteConfig = {
   name: "AVIORA EDU",
   url: process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000",
   description:
-    "Premium guidance for studying in Germany and selected European destinations — from university selection and applications to visa guidance and arrival.",
+    "Education consultancy for studying in Germany and Europe. Honest help with university admission, student visas and arrival for students from South Asia and the Gulf.",
   social: {
     instagram: process.env.NEXT_PUBLIC_SOCIAL_INSTAGRAM ?? "",
     linkedin: process.env.NEXT_PUBLIC_SOCIAL_LINKEDIN ?? "",
@@ -20,12 +20,11 @@ export const siteConfig = {
 export const navItems = [
   { label: "Home", href: "/" },
   { label: "Study in Germany", href: "/study-in-germany" },
+  { label: "Services", href: "/services" },
   { label: "Destinations", href: "/destinations" },
-  { label: "Universities", href: "/universities" },
-  { label: "How It Works", href: "/how-it-works" },
-  { label: "Dream Stories", href: "/dream-stories" },
-  { label: "Reviews", href: "/reviews" },
+  { label: "Guides", href: "/guides" },
   { label: "About", href: "/about" },
+  { label: "Reviews", href: "/reviews" },
   { label: "Contact", href: "/contact" },
 ] as const;
 

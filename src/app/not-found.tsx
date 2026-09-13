@@ -1,14 +1,17 @@
 import Link from "next/link";
 import { PageHeader } from "@/components/layout/PageHeader";
+import { getUi } from "@/i18n/server";
+import { lp } from "@/i18n/locales";
 
-export default function NotFound() {
+export default async function NotFound() {
+  const { locale, t } = await getUi();
   return (
     <>
-      <PageHeader eyebrow="404" title="This route doesn't exist." intro="The page you are looking for may have moved." />
+      <PageHeader eyebrow="404" title={t.notFound.title} intro={t.notFound.intro} />
       <section className="bg-ivory py-20">
         <div className="container-x">
-          <Link href="/" className="btn btn-navy">
-            Back to home
+          <Link href={lp(locale, "/")} className="btn btn-navy">
+            {t.common.backHome}
           </Link>
         </div>
       </section>

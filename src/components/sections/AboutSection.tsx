@@ -1,13 +1,16 @@
-import Image from "next/image";
-import type { Homepage, TeamMember } from "@/lib/content/schemas";
+import type { Homepage } from "@/lib/content/schemas";
 import { Monogram } from "@/components/brand/Logo";
 import { Reveal } from "@/components/ui/Reveal";
+import { getUi } from "@/i18n/server";
 
-export function AboutSection({ home, team }: { home: Homepage; team: TeamMember[] }) {
+/** "Who we are / what we do / why students choose us". Founder details live on /founder (FounderTeaser). */
+export async function AboutSection({ home }: { home: Homepage }) {
+  const { t } = await getUi();
+  const a = t.about;
   const blocks = [
-    { title: "Who we are", body: home.aboutWho },
-    { title: "What we do", body: home.aboutWhat },
-    { title: "Why students choose us", body: home.aboutWhy },
+    { title: a.who, body: home.aboutWho },
+    { title: a.what, body: home.aboutWhat },
+    { title: a.why, body: home.aboutWhy },
   ].filter((b) => b.body);
 
   return (
@@ -15,10 +18,10 @@ export function AboutSection({ home, team }: { home: Homepage; team: TeamMember[
       <div className="container-x grid gap-16 lg:grid-cols-[1.1fr_1fr] lg:gap-24">
         <Reveal>
           <p className="eyebrow flex items-center gap-3 text-gold-600">
-            <span className="h-px w-8 bg-gold-600/60" aria-hidden /> About AVIORA EDU
+            <span className="h-px w-8 bg-gold-600/60" aria-hidden /> {a.eyebrow}
           </p>
           <h2 id="about" className="mt-5 text-[clamp(2.4rem,5vw,4.4rem)] leading-[1.02] text-navy-900">
-            A focused consultancy for students who want to study in Europe <em className="text-gold-600">properly</em>.
+            {a.title} <em className="text-gold-600">{a.titleEm}</em>.
           </h2>
           <div className="relative mt-12 hidden aspect-[5/4] items-center justify-center overflow-hidden rounded-[2rem] bg-navy-950 lg:flex">
             <div aria-hidden className="absolute inset-0 bg-[radial-gradient(60%_60%_at_50%_40%,rgba(194,154,82,.28),transparent_70%)]" />
@@ -33,30 +36,6 @@ export function AboutSection({ home, team }: { home: Homepage; team: TeamMember[
             </Reveal>
           ))}
         </div>
-      </div>
-
-      <div className="container-x mt-24">
-        <Reveal>
-          <h3 className="eyebrow text-gold-600">Founder & team</h3>
-        </Reveal>
-        {team.length === 0 ? (
-          <Reveal className="mt-6 rounded-3xl border border-dashed border-navy-900/20 p-8 text-stone">
-            Team profiles will be introduced here soon.
-          </Reveal>
-        ) : (
-          <ul className="mt-8 grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
-            {[...team].sort((a, b) => a.order - b.order).map((m, i) => (
-              <Reveal as="li" key={m.id} delay={i * 80}>
-                <div className="relative aspect-[4/5] overflow-hidden rounded-3xl bg-navy-900">
-                  {m.photo ? <Image src={m.photo} alt={m.name} fill sizes="(min-width:1024px) 25vw, 50vw" className="object-cover" /> : <Monogram className="absolute left-1/2 top-1/2 size-20 -translate-x-1/2 -translate-y-1/2" />}
-                </div>
-                <p className="mt-4 font-display text-2xl text-navy-900">{m.name}</p>
-                <p className="text-sm text-gold-600">{m.role}</p>
-                {m.bio && <p className="mt-2 text-sm leading-relaxed text-stone">{m.bio}</p>}
-              </Reveal>
-            ))}
-          </ul>
-        )}
       </div>
     </section>
   );

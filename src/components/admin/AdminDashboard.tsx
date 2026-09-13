@@ -53,6 +53,11 @@ function MediaField({ field, value, onChange }: { field: Field; value: string; o
         </label>
       </div>
       {err && <p className="mt-1 text-sm text-danger">{err}</p>}
+      {value && (
+        <button type="button" className="mt-2 inline-flex items-center gap-1.5 text-xs font-semibold text-danger hover:underline" onClick={() => onChange("")}>
+          <Icon name="trash" className="size-3.5" /> Remove {isVideo ? "video" : "image"}
+        </button>
+      )}
       {value &&
         (isVideo ? (
           <video src={value} controls className="mt-3 max-h-48 rounded-xl" />
@@ -144,7 +149,7 @@ function Editor({ name, item, onClose, onSaved }: { name: CollectionName; item: 
                 ) : f.type === "media-image" || f.type === "media-video" ? (
                   <MediaField field={f} value={String(v ?? "")} onChange={(x) => set(f.key, x)} />
                 ) : (
-                  <input id={id} type={f.type === "url" ? "url" : "text"} className="field" value={String(v ?? "")} onChange={(e) => set(f.key, e.target.value)} />
+                  <input id={id} type={f.type === "url" ? "url" : f.type === "date" ? "date" : "text"} className="field" value={String(v ?? "")} onChange={(e) => set(f.key, e.target.value)} />
                 )}
                 {f.help && <p className="mt-1 text-xs text-stone">{f.help}</p>}
               </div>

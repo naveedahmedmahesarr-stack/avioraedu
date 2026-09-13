@@ -1,9 +1,12 @@
 import type { MetadataRoute } from "next";
-import { siteConfig } from "@/lib/config";
+import { connection } from "next/server";
+import { getSite } from "@/lib/site";
 
-export default function robots(): MetadataRoute.Robots {
+export default async function robots(): Promise<MetadataRoute.Robots> {
+  await connection();
+  const { url } = await getSite();
   return {
     rules: [{ userAgent: "*", allow: "/", disallow: ["/admin", "/api/"] }],
-    sitemap: `${siteConfig.url.replace(/\/$/, "")}/sitemap.xml`,
+    sitemap: `${url}/sitemap.xml`,
   };
 }

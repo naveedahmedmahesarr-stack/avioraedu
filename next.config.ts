@@ -34,6 +34,14 @@ const securityHeaders = [
 
 const nextConfig: NextConfig = {
   poweredByHeader: false,
+  async redirects() {
+    // German-language shortcuts people commonly type for the legal pages.
+    return [
+      { source: "/impressum", destination: "/legal/imprint", permanent: true },
+      { source: "/datenschutz", destination: "/legal/privacy-policy", permanent: true },
+      { source: "/privacy", destination: "/legal/privacy-policy", permanent: true },
+    ];
+  },
   async headers() {
     return [
       { source: "/:path*", headers: securityHeaders },

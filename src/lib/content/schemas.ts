@@ -30,6 +30,12 @@ export const destinationSchema = z.object({
   cities: z.array(text(80)).default([]),
   universities: z.array(text(160)).default([]),
   order: z.number().int().default(0),
+  // German versions (empty = English is shown on German pages)
+  nameDe: text(80).default(""),
+  taglineDe: text(160).default(""),
+  descriptionDe: text(4000).default(""),
+  benefitsDe: z.array(text(300)).default([]),
+  lifestyleDe: z.array(text(300)).default([]),
 });
 
 export const universitySchema = z.object({
@@ -48,8 +54,11 @@ export const universitySchema = z.object({
   applicationInfo: text(600).default(""),
   institutionType: z.enum(["Public", "Private"]).default("Public"),
   website: optionalUrl,
-  /** Sample/demo entries are labelled in the UI until replaced by verified data. */
+  /** Internal "details still to double-check" flag — not shown on the public site. */
   sample: z.boolean().default(false),
+  descriptionDe: text(3000).default(""),
+  tuitionDe: text(300).default(""),
+  applicationInfoDe: text(600).default(""),
 });
 
 export const dreamStorySchema = z.object({
@@ -71,9 +80,19 @@ export const reviewSchema = z.object({
   ...base,
   name: text(120).min(1),
   country: text(80).min(1),
-  rating: z.number().int().min(1).max(5),
+  /** 1–5, or 0 when the client gave no rating (testimonials added by admin). */
+  rating: z.number().int().min(0).max(5).default(0),
   review: text(3000).min(10),
   photo: optionalUrl,
+  destination: text(80).default(""),
+  university: text(160).default(""),
+  program: text(160).default(""),
+  reviewDate: z
+    .string()
+    .trim()
+    .refine((v) => v === "" || /^\d{4}-\d{2}-\d{2}$/.test(v), "Use YYYY-MM-DD")
+    .default(""),
+  featured: z.boolean().default(false),
   source: z.enum(["website", "admin", "external"]).default("website"),
   verified: z.boolean().default(false),
   status: z.enum(["pending", "approved", "rejected"]).default("pending"),
@@ -84,6 +103,8 @@ export const faqSchema = z.object({
   question: text(300).min(1),
   answer: text(3000).min(1),
   order: z.number().int().default(0),
+  questionDe: text(300).default(""),
+  answerDe: text(3000).default(""),
 });
 
 export const teamMemberSchema = z.object({
@@ -93,6 +114,20 @@ export const teamMemberSchema = z.object({
   bio: text(2000).default(""),
   photo: optionalUrl,
   order: z.number().int().default(0),
+  /** Only facts supplied by the person — never invented. */
+  nationality: text(120).default(""),
+  experience: text(160).default(""),
+  location: text(120).default(""),
+  locationDe: text(120).default(""),
+  /** Personal wordmark text (defaults to the name) and an optional uploaded logo that replaces the generated wordmark. */
+  logoText: text(80).default(""),
+  logoImage: optionalUrl,
+  /** logo = wordmark only · photo = photo (falls back to wordmark if none) · logo-photo = photo with wordmark */
+  displayMode: z.enum(["logo", "photo", "logo-photo"]).default("logo"),
+  roleDe: text(120).default(""),
+  bioDe: text(2000).default(""),
+  nationalityDe: text(120).default(""),
+  experienceDe: text(160).default(""),
 });
 
 export const homepageSchema = z.object({
@@ -104,6 +139,13 @@ export const homepageSchema = z.object({
   aboutWho: text(1500).default(""),
   aboutWhat: text(1500).default(""),
   aboutWhy: text(1500).default(""),
+  heroHeadlineDe: text(120).default(""),
+  heroSubheadlineDe: text(160).default(""),
+  heroMessageDe: text(400).default(""),
+  introStatementDe: text(600).default(""),
+  aboutWhoDe: text(1500).default(""),
+  aboutWhatDe: text(1500).default(""),
+  aboutWhyDe: text(1500).default(""),
 });
 
 export const submissionSchema = z.object({
@@ -139,6 +181,35 @@ export const settingsSchema = z.object({
     .max(40)
     .refine((s) => s === "" || /^\+?[\d\s()-]{6,}$/.test(s), "Use digits, spaces, +, - or brackets")
     .default(""),
+  businessName: text(80).default("AVIORA EDU"),
+  /** Public site URL, e.g. https://www.example.com. Empty = NEXT_PUBLIC_SITE_URL. */
+  siteUrl: z
+    .string()
+    .trim()
+    .max(200)
+    .refine((v) => v === "" || /^https:\/\/[a-z0-9.-]+\.[a-z]{2,}\/?$/i.test(v), "Use https://your-domain (no path)")
+    .default(""),
+  /** Only fill in with a real business address — it is published as structured data. */
+  addressStreet: text(160).default(""),
+  addressPostalCode: text(20).default(""),
+  addressCity: text(80).default(""),
+  addressCountry: text(80).default(""),
+  socialInstagram: optionalUrl,
+  socialFacebook: optionalUrl,
+  socialLinkedin: optionalUrl,
+  socialYoutube: optionalUrl,
+  socialTiktok: optionalUrl,
+  whatsappMessageDe: text(300).default("Hallo AVIORA EDU, ich möchte mich über ein Studium in Europa informieren."),
+  // Legal details — shown on the legal pages only when filled in. Never invent these.
+  legalAddress: text(300).default(""),
+  legalForm: text(160).default(""),
+  vatId: text(40).default(""),
+  registerEntry: text(200).default(""),
+  disputeResolution: text(600).default(""),
+  pkEntityName: text(200).default(""),
+  pkRegistration: text(120).default(""),
+  pkNtn: text(60).default(""),
+  pkAddress: text(300).default(""),
 });
 
 /** Public consultation form — shared by client validation and the API route. */
@@ -157,7 +228,7 @@ export const consultationInputSchema = z.object({
   studyField: z.string().trim().min(2, "Please tell us your field of interest").max(120),
   intake: z.string().trim().min(2, "Please choose an intake").max(60),
   message: z.string().trim().max(3000).default(""),
-  consent: z.literal(true, { error: "Please agree to be contacted about your enquiry" }),
+  consent: z.literal(true, { error: "Please agree to be contacted about your inquiry" }),
   company: z.string().max(0).optional(), // honeypot
 });
 export type ConsultationInput = z.infer<typeof consultationInputSchema>;

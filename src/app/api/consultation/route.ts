@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { consultationInputSchema } from "@/lib/content/schemas";
-import { create, StorageUnavailableError } from "@/lib/content/store";
+import { create, getSettings, StorageUnavailableError } from "@/lib/content/store";
 import { emailConfigured, sendConsultationEmail } from "@/lib/notify";
 import { clientIp, rateLimit } from "@/lib/rate-limit";
 
@@ -40,9 +40,10 @@ export async function POST(req: Request) {
     console.error("[consultation] storage error:", err);
   }
 
-  if (emailConfigured()) {
+  const businessEmail = (await getSettings().catch(() => null))?.businessEmail || undefined;
+  if (emailConfigured(businessEmail)) {
     try {
-      await sendConsultationEmail(input);
+      await sendConsultationEmail(input, businessEmail);
       emailed = true;
     } catch (err) {
       console.error("[consultation] email error:", err);
