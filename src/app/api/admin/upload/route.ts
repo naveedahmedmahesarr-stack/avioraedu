@@ -1,11 +1,9 @@
 import { NextResponse } from "next/server";
-import { promises as fs } from "node:fs";
-import path from "node:path";
 import { randomUUID } from "node:crypto";
-import { UPLOAD_DIR } from "@/lib/content/store";
+import { saveMedia } from "@/lib/content/store";
 
-// Auth enforced in src/proxy.ts. Local-disk media driver.
-// CONFIGURATION REQUIRED for serverless hosting: replace with S3/R2/Supabase Storage.
+// Auth enforced in src/proxy.ts. Stored on disk locally, or in Redis when KV_REST_API_URL is set (Vercel).
+// Vercel limits request bodies to 4.5 MB, so larger files only upload on a self-hosted server.
 
 const ALLOWED: Record<string, { ext: string; max: number }> = {
   "image/jpeg": { ext: "jpg", max: 8 * 1024 * 1024 },
@@ -49,8 +47,7 @@ export async function POST(req: Request) {
 
   const name = `${randomUUID()}.${rule.ext}`;
   try {
-    await fs.mkdir(UPLOAD_DIR, { recursive: true });
-    await fs.writeFile(path.join(/*turbopackIgnore: true*/ UPLOAD_DIR, name), bytes);
+    await saveMedia(name, bytes);
   } catch (err) {
     console.error("[upload]", err);
     return NextResponse.json(
