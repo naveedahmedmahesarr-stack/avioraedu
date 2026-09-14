@@ -27,8 +27,12 @@ function renderMode(): Mode {
       webglCache = false;
     }
   }
-  const saveData = (navigator as Navigator & { connection?: { saveData?: boolean } }).connection?.saveData;
-  return webglCache && !saveData ? "webgl" : "fallback";
+  const nav = navigator as Navigator & { connection?: { saveData?: boolean }; deviceMemory?: number };
+  const saveData = nav.connection?.saveData;
+  // Low-power phones get the animated SVG hero: three.js would block the main thread for seconds there.
+  const small = window.matchMedia("(max-width: 767px), (pointer: coarse)").matches;
+  const lowPower = small && ((nav.hardwareConcurrency ?? 8) <= 4 || (nav.deviceMemory ?? 8) <= 4);
+  return webglCache && !saveData && !lowPower ? "webgl" : "fallback";
 }
 
 const noopSubscribe = () => () => {};
@@ -53,10 +57,23 @@ export function Hero({ headline, subheadline, message }: { headline: string; sub
   const reduced = useMediaQuery("(prefers-reduced-motion: reduce)");
   const compact = useMediaQuery("(max-width: 767px), (pointer: coarse)");
   const [ready, setReady] = useState(false);
+  const [start3d, setStart3d] = useState(false);
   const [active, setActive] = useState(true);
   const [chapter, setChapter] = useState(0);
   const t = useUi().hero;
   const href = useLp();
+
+  // Load the WebGL scene once the browser is idle, so the heading, text and buttons paint and respond first.
+  // The branded loading screen still covers first visits.
+  useEffect(() => {
+    if (mode !== "webgl") return;
+    if ("requestIdleCallback" in window) {
+      const id = window.requestIdleCallback(() => setStart3d(true), { timeout: 1500 });
+      return () => window.cancelIdleCallback(id);
+    }
+    const t = setTimeout(() => setStart3d(true), 300);
+    return () => clearTimeout(t);
+  }, [mode]);
 
   // Pause rendering when the hero is off-screen.
   useEffect(() => {
@@ -130,7 +147,9 @@ export function Hero({ headline, subheadline, message }: { headline: string; sub
           {/* Visual layer */}
           <div className="absolute inset-0">
             {mode === "webgl" ? (
-              <Hero3D progress={progress} reducedMotion={reduced} compact={compact} active={active} berlinFocus={chapter >= 3} onReady={() => setReady(true)} />
+              start3d ? (
+                <Hero3D progress={progress} reducedMotion={reduced} compact={compact} active={active} berlinFocus={chapter >= 3} onReady={() => setReady(true)} />
+              ) : null
             ) : mode === "fallback" ? (
               <HeroFallback />
             ) : null}

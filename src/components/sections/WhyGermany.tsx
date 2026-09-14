@@ -6,7 +6,8 @@ import { lp } from "@/i18n/locales";
 
 const icons: IconName[] = ["graduation", "flask", "briefcase", "globe", "book", "shield"];
 
-export async function WhyGermany() {
+/** `eager`: show the heading immediately (for pages where this section sits directly below the page header). */
+export async function WhyGermany({ eager = false }: { eager?: boolean } = {}) {
   const { locale, t } = await getUi();
   const w = t.why;
   return (
@@ -14,6 +15,7 @@ export async function WhyGermany() {
       <div className="container-x grid gap-16 lg:grid-cols-[1fr_1.35fr] lg:gap-24">
         <div className="lg:sticky lg:top-32 lg:self-start">
           <SectionHeading
+            eager={eager}
             eyebrow={w.eyebrow}
             title={
               <span id="why-germany">

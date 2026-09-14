@@ -213,6 +213,138 @@ const de: Record<string, Omit<Guide, "slug" | "reviewed" | "relatedService">> = 
       { label: "DAAD – Studium planen (englisch)", url: "https://www.daad.de/en/study-and-research-in-germany/plan-your-studies/" },
     ],
   },
+  "public-vs-private-universities-germany": {
+    title: "Staatliche und private Hochschulen in Deutschland",
+    metaTitle: "Staatliche vs. private Hochschulen",
+    description:
+      "Wie sich staatliche und private Hochschulen bei Studiengebühren, Anerkennung, Zulassung und Studienangebot unterscheiden – und was Sie prüfen sollten.",
+    eyebrow: "Ratgeber · Hochschulen",
+    intro:
+      "In Deutschland gibt es staatliche und private Hochschulen. Beide können anerkannte Abschlüsse verleihen, unterscheiden sich aber bei Kosten, Größe und Bewerbung. Dieser Ratgeber erklärt die Unterschiede, damit Sie eine realistische Auswahl treffen können.",
+    sections: [
+      {
+        heading: "Staatliche Hochschulen",
+        body: [
+          "Die meisten Studierenden in Deutschland sind an staatlichen Hochschulen eingeschrieben, die von den Bundesländern finanziert werden. An den meisten staatlichen Hochschulen fallen für Bachelor- und viele Masterstudiengänge keine Studiengebühren an; alle Studierenden zahlen jedoch einen Semesterbeitrag für Verwaltung und oft ein Semesterticket.",
+          "Es gibt Ausnahmen: Einige Bundesländer erheben für bestimmte Gruppen Studiengebühren. Baden-Württemberg etwa verlangt von den meisten Studierenden aus Nicht-EU-Staaten Gebühren. Prüfen Sie immer die aktuellen Regeln der Hochschule und des Bundeslandes.",
+        ],
+      },
+      {
+        heading: "Private Hochschulen",
+        body: [
+          "Private Hochschulen finanzieren sich überwiegend über Studiengebühren. Sie sind oft kleiner, bieten mitunter mehr englischsprachige Studiengänge und teils flexiblere Starttermine.",
+          "Prüfen Sie vor der Bewerbung, ob die Hochschule staatlich anerkannt ist. Abschlüsse staatlich anerkannter privater Hochschulen sind rechtlich gleichwertig mit denen staatlicher Hochschulen.",
+        ],
+      },
+      {
+        heading: "Die wichtigsten Unterschiede",
+        body: [],
+        bullets: [
+          "Kosten: Staatliche Hochschulen erheben selten Studiengebühren, private in der Regel schon",
+          "Anerkennung: Staatliche Hochschulen sind automatisch anerkannt, private müssen staatlich anerkannt sein",
+          "Zulassung: Beliebte staatliche Studiengänge sind oft sehr gefragt; private Hochschulen haben meist eigene Auswahlverfahren",
+          "Größe: Staatliche Hochschulen sind oft groß, private lehren meist in kleineren Gruppen",
+        ],
+      },
+      {
+        heading: "Anerkennung prüfen und Studiengänge finden",
+        body: [
+          "Der Hochschulkompass der Hochschulrektorenkonferenz listet staatliche und staatlich anerkannte Hochschulen mit ihren Studiengängen. Für englischsprachige Studiengänge sind die Informationen des DAAD ein guter Ausgangspunkt.",
+        ],
+      },
+      {
+        heading: "Was passt zu Ihnen?",
+        body: [
+          "Wenn die Kosten entscheidend sind und Ihr Profil wettbewerbsfähig ist, sind staatliche Hochschulen meist die erste Wahl. Brauchen Sie einen bestimmten englischsprachigen Studiengang, einen flexiblen Studienbeginn oder kleinere Gruppen, kann eine staatlich anerkannte private Hochschule sinnvoll sein.",
+          "Für ein Studentenvisum brauchen Sie eine Zulassung an einer anerkannten Hochschule und müssen die Visumvoraussetzungen erfüllen, einschließlich des Finanzierungsnachweises.",
+        ],
+      },
+    ],
+    faqs: [
+      {
+        q: "Sind Abschlüsse privater Hochschulen in Deutschland anerkannt?",
+        a: "Abschlüsse staatlich anerkannter privater Hochschulen sind rechtlich gleichwertig mit denen staatlicher Hochschulen. Prüfen Sie die Anerkennung vor der Bewerbung im Hochschulkompass.",
+      },
+      {
+        q: "Ist das Studium an einer staatlichen Hochschule kostenlos?",
+        a: "An den meisten staatlichen Hochschulen fallen für die meisten Studiengänge keine Studiengebühren an. Sie zahlen aber einen Semesterbeitrag, und einige Bundesländer erheben Gebühren für bestimmte internationale Studierende. Prüfen Sie die Regeln Ihrer Hochschule.",
+      },
+      {
+        q: "Arbeitet AVIORA EDU mit bestimmten Hochschulen zusammen?",
+        a: "Wir beraten zu staatlichen und staatlich anerkannten privaten Hochschulen passend zu Ihrem Profil. Partnerschaften mit Hochschulen behaupten wir nicht.",
+      },
+    ],
+    sources: [
+      { label: "Hochschulkompass – Hochschulrektorenkonferenz", url: "https://www.hochschulkompass.de" },
+      { label: "DAAD – Studium planen (englisch)", url: "https://www.daad.de/en/study-and-research-in-germany/plan-your-studies/" },
+    ],
+  },
+  "studienkolleg-germany": {
+    title: "Studienkolleg: Vorbereitung auf das Studium in Deutschland",
+    metaTitle: "Studienkolleg in Deutschland erklärt",
+    description:
+      "Was ein Studienkolleg ist, wer es braucht, welche Kursarten es gibt und wie Feststellungsprüfung und Bewerbung für internationale Studierende ablaufen.",
+    eyebrow: "Ratgeber · Studienkolleg",
+    intro:
+      "Wenn Ihr Schulabschluss keinen direkten Zugang zu einer deutschen Hochschule ermöglicht, kann ein Studienkolleg Ihr Weg ins Studium sein. Dieser Ratgeber erklärt, wer eines braucht, wie die Kurse funktionieren und was Sie vorbereiten sollten.",
+    sections: [
+      {
+        heading: "Was ist ein Studienkolleg?",
+        body: [
+          "Ein Studienkolleg ist ein Vorbereitungskurs für internationale Bewerberinnen und Bewerber, deren Schulabschluss nicht als gleichwertig mit der deutschen Hochschulzugangsberechtigung anerkannt ist. Er bereitet auf das Studium in Ihrem Fachbereich vor und dauert in der Regel zwei Semester.",
+        ],
+      },
+      {
+        heading: "Wer braucht ein Studienkolleg?",
+        body: [
+          "Ob Sie eines brauchen, hängt von Ihrem Schulabschluss, Ihrem Herkunftsland und teils von einem bisherigen Studium ab. Manche können direkt an die Hochschule, etwa nach einem teilweise abgeschlossenen Studium im Heimatland.",
+          "Die Datenbank anabin und die Zulassungsinformationen des DAAD zeigen, wie Abschlüsse aus vielen Ländern bewertet werden. Die endgültige Entscheidung trifft die Hochschule, an der Sie sich bewerben.",
+        ],
+      },
+      {
+        heading: "Kursarten",
+        body: ["Die Kurse richten sich nach dem geplanten Studienfach. Übliche Kursarten sind:"],
+        bullets: [
+          "T-Kurs – technische, mathematische und naturwissenschaftliche Fächer",
+          "M-Kurs – medizinische, biologische und pharmazeutische Fächer",
+          "W-Kurs – wirtschafts- und sozialwissenschaftliche Fächer",
+          "G-Kurs – geisteswissenschaftliche Fächer und Germanistik",
+          "S-Kurs – Sprachen",
+        ],
+      },
+      {
+        heading: "Die Feststellungsprüfung",
+        body: [
+          "Der Kurs endet mit der Feststellungsprüfung. Wer sie besteht, erhält Zugang zu Studiengängen im Fachbereich des Kurses.",
+        ],
+      },
+      {
+        heading: "Zulassung und Sprachanforderungen",
+        body: [
+          "Für ein Studienkolleg bewerben Sie sich meist über eine Hochschule oder direkt beim Studienkolleg und legen eine Aufnahmeprüfung ab, die in der Regel Deutsch und oft Mathematik prüft. Der Unterricht findet auf Deutsch statt, gute Deutschkenntnisse sind daher unerlässlich.",
+          "Staatliche Studienkollegs erheben in der Regel keine Studiengebühren, ein Semesterbeitrag fällt aber an. Private Anbieter verlangen Gebühren.",
+        ],
+      },
+    ],
+    faqs: [
+      {
+        q: "Wird im Studienkolleg auf Englisch unterrichtet?",
+        a: "An staatlichen Studienkollegs wird auf Deutsch unterrichtet. Wenn Sie auf Englisch studieren möchten, prüfen Sie, ob Ihr Abschluss eine direkte Zulassung zu einem englischsprachigen Studiengang ermöglicht.",
+      },
+      {
+        q: "Bekomme ich für ein Studienkolleg ein Studentenvisum?",
+        a: "Studienvorbereitende Maßnahmen wie ein Studienkolleg können ein Zweck des Studentenvisums sein. Prüfen Sie die aktuellen Voraussetzungen bei der für Sie zuständigen deutschen Auslandsvertretung.",
+      },
+      {
+        q: "Hilft AVIORA EDU bei Fragen zum Studienkolleg?",
+        a: "Wir schätzen ein, ob Sie voraussichtlich ein Studienkolleg brauchen, und erklären Ihre Möglichkeiten. Über die Zulassung entscheiden Studienkolleg und Hochschule.",
+      },
+    ],
+    sources: [
+      { label: "anabin – Anerkennung ausländischer Abschlüsse (KMK)", url: "https://anabin.kmk.org" },
+      { label: "DAAD – Studium planen (englisch)", url: "https://www.daad.de/en/study-and-research-in-germany/plan-your-studies/" },
+    ],
+  },
 };
 
 export const getGuides = (locale: Locale): Guide[] => guides.map((g) => (locale === "de" && de[g.slug] ? { ...g, ...de[g.slug] } : g));

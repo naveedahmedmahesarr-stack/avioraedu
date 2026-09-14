@@ -94,7 +94,7 @@ export default async function StudyInGermanyPage() {
         }
         intro={c.intro}
       />
-      <WhyGermany />
+      <WhyGermany eager />
       <GermanyExperience />
       <section aria-labelledby="de-unis" className="bg-sand/50 py-28 md:py-36">
         <div className="container-x">

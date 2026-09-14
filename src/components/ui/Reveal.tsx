@@ -7,19 +7,22 @@ export function Reveal({
   as = "div",
   delay = 0,
   className = "",
+  eager = false,
 }: {
   children: ReactNode;
   as?: ElementType;
   delay?: number;
   className?: string;
+  /** Visible from the first paint (no wait for JavaScript). Use for content near the top of a page. */
+  eager?: boolean;
 }) {
   const Tag = as as "div";
   const ref = useRef<HTMLDivElement>(null);
   // Visibility lives in React state (not a DOM class toggle) so re-renders can never hide revealed content.
-  const [visible, setVisible] = useState(false);
+  const [visible, setVisible] = useState(eager);
   useEffect(() => {
     const el = ref.current;
-    if (!el) return;
+    if (!el || eager) return;
     const show = () => setVisible(true);
     if (!("IntersectionObserver" in window)) {
       const t = setTimeout(show, 0);
@@ -48,7 +51,7 @@ export function Reveal({
       io.disconnect();
       window.removeEventListener("scroll", passed);
     };
-  }, []);
+  }, [eager]);
   return (
     <Tag
       ref={ref}
@@ -67,6 +70,7 @@ export function SectionHeading({
   tone = "dark",
   align = "left",
   as: H = "h2",
+  eager = false,
 }: {
   eyebrow: string;
   title: ReactNode;
@@ -74,10 +78,11 @@ export function SectionHeading({
   tone?: "dark" | "light";
   align?: "left" | "center";
   as?: "h1" | "h2";
+  eager?: boolean;
 }) {
   const center = align === "center";
   return (
-    <Reveal className={`${center ? "mx-auto text-center" : ""} max-w-3xl`}>
+    <Reveal eager={eager} className={`${center ? "mx-auto text-center" : ""} max-w-3xl`}>
       <p className={`eyebrow ${tone === "light" ? "text-gold-300" : "text-gold-600"} flex items-center gap-3 ${center ? "justify-center" : ""}`}>
         <span className={`h-px w-8 ${tone === "light" ? "bg-gold-300/60" : "bg-gold-600/60"}`} aria-hidden />
         {eyebrow}

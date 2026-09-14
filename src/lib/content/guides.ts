@@ -263,6 +263,146 @@ export const guides: Guide[] = [
     ],
     relatedService: "study",
   },
+  {
+    slug: "public-vs-private-universities-germany",
+    title: "Public vs private universities in Germany",
+    metaTitle: "Public vs Private Universities in Germany",
+    description:
+      "How public and private universities in Germany differ in tuition, recognition, admission and study options — and what to check before you apply.",
+    eyebrow: "Guide · Universities",
+    intro:
+      "Germany has both public (state) and private higher education institutions. Both can award recognized degrees, but they differ in cost, size and how you apply. This guide explains the differences so you can build a realistic shortlist.",
+    reviewed: "2026-09-14",
+    sections: [
+      {
+        heading: "Public universities",
+        body: [
+          "Most students in Germany study at public institutions, which are funded by the federal states. At most public universities, bachelor's and many master's programs do not charge tuition fees, although every student pays a semester contribution that covers administration and often a public transport ticket.",
+          "There are exceptions: some federal states charge tuition to certain groups. Baden-Württemberg, for example, charges tuition to most students from outside the EU. Always check the current rules of the university and state you are applying to.",
+        ],
+      },
+      {
+        heading: "Private universities",
+        body: [
+          "Private universities are funded mainly through tuition fees. They are often smaller, may offer more programs in English and sometimes have more flexible start dates.",
+          "Before applying, check that the institution is state-recognized (staatlich anerkannt). Degrees from state-recognized private universities have the same legal status as degrees from public universities.",
+        ],
+      },
+      {
+        heading: "Key differences at a glance",
+        body: [],
+        bullets: [
+          "Cost: public universities rarely charge tuition; private universities usually do",
+          "Recognition: public universities are recognized by default; private ones must be state-recognized",
+          "Admission: popular public programs can be very competitive; private universities often run their own admission process",
+          "Size: public universities are often large; private institutions tend to teach in smaller groups",
+        ],
+      },
+      {
+        heading: "How to check recognition and find programs",
+        body: [
+          "The Higher Education Compass (Hochschulkompass) of the German Rectors' Conference lists state and state-recognized higher education institutions and their degree programs. The DAAD's study resources are a useful starting point for English-taught courses.",
+        ],
+      },
+      {
+        heading: "Which is right for you?",
+        body: [
+          "If cost matters most and your profile is competitive, public universities are usually the first choice. If you need a specific English-taught program, a flexible intake or smaller classes, a state-recognized private university can be worth considering.",
+          "For a student visa, you need admission to a recognized institution and must meet the visa requirements, including proof of financial resources.",
+        ],
+      },
+    ],
+    faqs: [
+      {
+        q: "Are degrees from private universities in Germany recognized?",
+        a: "Degrees from state-recognized private universities have the same legal status as degrees from public universities. Check recognition in the Hochschulkompass before you apply.",
+      },
+      {
+        q: "Is studying at a public university in Germany free?",
+        a: "At most public universities there are no tuition fees for most programs, but you pay a semester contribution, and some federal states charge tuition to certain international students. Check the rules of your university.",
+      },
+      {
+        q: "Does AVIORA EDU work with specific universities?",
+        a: "We advise on public and state-recognized private universities based on your profile. We do not claim partnerships with universities.",
+      },
+    ],
+    sources: [
+      { label: "Hochschulkompass — German Rectors' Conference", url: "https://www.hochschulkompass.de" },
+      { label: "DAAD — Plan your studies", url: "https://www.daad.de/en/study-and-research-in-germany/plan-your-studies/" },
+      { label: "Make it in Germany — Studying", url: "https://www.make-it-in-germany.com/en/study-training/studies-in-germany" },
+    ],
+    relatedService: "study",
+  },
+  {
+    slug: "studienkolleg-germany",
+    title: "Studienkolleg: preparatory courses for studying in Germany",
+    metaTitle: "Studienkolleg in Germany Explained",
+    description:
+      "What a Studienkolleg is, who needs one, the course types, the assessment exam (Feststellungsprüfung) and how to apply as an international student.",
+    eyebrow: "Guide · Studienkolleg",
+    intro:
+      "If your school-leaving certificate does not give you direct access to a German university, a Studienkolleg can be your route in. This guide explains who needs one, how the courses work and what to prepare.",
+    reviewed: "2026-09-14",
+    sections: [
+      {
+        heading: "What is a Studienkolleg?",
+        body: [
+          "A Studienkolleg is a preparatory course for international applicants whose secondary school certificate is not recognized as equivalent to the German university entrance qualification. It prepares you for university study in your subject area and usually lasts two semesters.",
+        ],
+      },
+      {
+        heading: "Who needs a Studienkolleg?",
+        body: [
+          "Whether you need one depends on your school certificate, your country and sometimes previous university study. Some applicants can go directly to university, for example after completing part of a degree in their home country.",
+          "The anabin database and the DAAD's admission information show how qualifications from many countries are assessed. The university you apply to makes the final decision.",
+        ],
+      },
+      {
+        heading: "Course types",
+        body: ["Courses focus on the subjects you plan to study. Common course types include:"],
+        bullets: [
+          "T course — technical, mathematical and natural science subjects",
+          "M course — medical, biological and pharmaceutical subjects",
+          "W course — economics, business and social sciences",
+          "G course — humanities and German studies",
+          "S course — languages",
+        ],
+      },
+      {
+        heading: "The assessment exam (Feststellungsprüfung)",
+        body: [
+          "The course ends with the Feststellungsprüfung. Passing it gives you access to university programs in the subject area of your course.",
+        ],
+      },
+      {
+        heading: "Admission and language requirements",
+        body: [
+          "To join a Studienkolleg you usually need to apply through a university or the Studienkolleg itself and pass an entrance exam, which typically tests German and often mathematics. Teaching is in German, so good German skills are essential.",
+          "Public Studienkollegs generally do not charge tuition, although a semester contribution applies. Private providers charge fees.",
+        ],
+      },
+    ],
+    faqs: [
+      {
+        q: "Is a Studienkolleg taught in English?",
+        a: "Studienkollegs at public institutions are taught in German. If you want to study in English, check whether your qualification allows direct admission to an English-taught program.",
+      },
+      {
+        q: "Can I get a student visa for a Studienkolleg?",
+        a: "Preparation for studies, such as attending a Studienkolleg, can be a purpose of a student visa. Check the current requirements with the German mission responsible for your application.",
+      },
+      {
+        q: "Does AVIORA EDU help with Studienkolleg questions?",
+        a: "We assess whether you are likely to need a Studienkolleg and explain your options. Admission decisions are made by the Studienkolleg and the university.",
+      },
+    ],
+    sources: [
+      { label: "anabin — Recognition of foreign qualifications (KMK)", url: "https://anabin.kmk.org" },
+      { label: "DAAD — Plan your studies", url: "https://www.daad.de/en/study-and-research-in-germany/plan-your-studies/" },
+      { label: "Make it in Germany — Studying", url: "https://www.make-it-in-germany.com/en/study-training/studies-in-germany" },
+    ],
+    relatedService: "study",
+  },
 ];
 
 export const getGuide = (slug: string) => guides.find((g) => g.slug === slug) ?? null;
