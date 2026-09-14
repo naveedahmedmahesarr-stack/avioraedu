@@ -208,6 +208,7 @@ export default async function MarketPage(props: PageProps<"/study-in-germany/fro
                   { href: "/study-in-germany", label: l.overview },
                   { href: "/universities", label: l.unis },
                   { href: "/student-support", label: l.support },
+                  { href: "/dream-stories", label: locale === "de" ? "Visum-Erfolgsgeschichten" : "Student visa success stories" },
                   ...guides.map((g) => ({ href: `/guides/${g.slug}`, label: g.title })),
                 ].map((x) => (
                   <li key={x.href}>

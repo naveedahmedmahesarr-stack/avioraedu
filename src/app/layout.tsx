@@ -28,7 +28,7 @@ const description = {
 export async function generateMetadata(): Promise<Metadata> {
   await connection();
   const [site, locale] = await Promise.all([getSite(), getLocale()]);
-  const title = { en: `Education Consultant in Berlin – Study in Germany | ${site.name}`, de: `Studienberatung in Berlin – Studieren in Deutschland | ${site.name}` };
+  const title = { en: `Education Consultant Berlin – Study in Germany | ${site.name}`, de: `Studienberatung Berlin – Studium in Deutschland | ${site.name}` };
   const base = pageMeta(locale, "/", title, description);
   return {
     ...base,

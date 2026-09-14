@@ -22,7 +22,7 @@ export const guides: Guide[] = [
   {
     slug: "germany-student-visa",
     title: "Germany student visa: requirements and process",
-    metaTitle: "Germany Student Visa: Requirements, Documents, Process",
+    metaTitle: "Germany Student Visa: Requirements & Process",
     description:
       "How the German student visa works: admission, blocked account, health insurance, APS where required, the application steps and life after arrival.",
     eyebrow: "Guide · Student visa",
@@ -91,7 +91,7 @@ export const guides: Guide[] = [
   {
     slug: "germany-opportunity-card",
     title: "Germany Opportunity Card (Chancenkarte) explained",
-    metaTitle: "Germany Opportunity Card (Chancenkarte) — Overview",
+    metaTitle: "Germany Opportunity Card (Chancenkarte)",
     description:
       "What Germany's Opportunity Card (Chancenkarte) is, who can apply, how the points system works and how it differs from coming to Germany to study.",
     eyebrow: "Guide · Opportunity Card",
@@ -140,7 +140,7 @@ export const guides: Guide[] = [
   {
     slug: "ausbildung-germany",
     title: "Ausbildung in Germany: vocational training explained",
-    metaTitle: "Ausbildung in Germany — Vocational Training Explained",
+    metaTitle: "Ausbildung in Germany: How It Works",
     description:
       "How Germany's dual vocational training works: company and vocational school, pay, language requirements, the visa and how it compares with university.",
     eyebrow: "Guide · Ausbildung",
@@ -187,6 +187,81 @@ export const guides: Guide[] = [
       { label: "Federal Employment Agency — Training", url: "https://www.arbeitsagentur.de/en" },
     ],
     relatedService: "informational",
+  },
+  {
+    slug: "blocked-account-germany",
+    title: "Blocked account (Sperrkonto) for studying in Germany",
+    metaTitle: "Blocked Account Germany (Sperrkonto) Explained",
+    description:
+      "What a German blocked account (Sperrkonto) is, why the student visa usually requires proof of funds, how it works after arrival and which alternatives exist.",
+    eyebrow: "Guide · Blocked account",
+    intro:
+      "To get a German student visa you normally have to show that you can cover your living costs. For many students, a blocked account is how they do that. This guide explains how it works without quoting figures that change — always check the current amount with the official sources below.",
+    reviewed: "2026-09-14",
+    sections: [
+      {
+        heading: "What is a blocked account?",
+        body: [
+          "A blocked account (Sperrkonto) is a special bank account for international students. You deposit the amount required for one year before applying for your visa. After you arrive in Germany, a fixed monthly amount is released to you, so the money covers your living costs over time.",
+          "It is one of the most common ways to provide the proof of financial resources that German missions ask for in student visa applications.",
+        ],
+      },
+      {
+        heading: "How much money is required?",
+        body: [
+          "The required amount is set by the German government and is adjusted from time to time. Because it changes, we do not quote a figure here. Check the current amount on the website of the Federal Foreign Office or the German mission responsible for your application before you open an account.",
+        ],
+      },
+      {
+        heading: "How it works, step by step",
+        body: [],
+        bullets: [
+          "Choose a provider that the responsible German mission accepts",
+          "Open the account online and complete the identity check",
+          "Transfer the required amount — international transfers can take several days",
+          "Receive the confirmation and include it in your visa application",
+          "After arrival: activate payouts to a German bank account and receive the monthly amount",
+        ],
+      },
+      {
+        heading: "Alternatives to a blocked account",
+        body: ["Depending on your situation, German missions may also accept other proof of financial resources, for example:"],
+        bullets: [
+          "A formal obligation letter (Verpflichtungserklärung) from a person living in Germany",
+          "A scholarship confirmation that covers your living costs",
+        ],
+      },
+      {
+        heading: "Common mistakes to avoid",
+        body: [],
+        bullets: [
+          "Transferring less than the full current amount",
+          "Waiting too long — the account and transfer should be complete before your visa appointment",
+          "Using a provider the responsible mission does not accept",
+          "Confusing the blocked account with health insurance, which is a separate requirement",
+        ],
+      },
+    ],
+    faqs: [
+      {
+        q: "Is a blocked account mandatory for a German student visa?",
+        a: "Not always. It is the most common proof of financial resources, but missions may accept alternatives such as a formal obligation letter or a scholarship. Check the requirements of the German mission handling your application.",
+      },
+      {
+        q: "Can AVIORA EDU open a blocked account for me?",
+        a: "No. You open the account yourself with a provider. We explain how the proof of funds fits into your visa application and help you prepare complete documents.",
+      },
+      {
+        q: "When should I open a blocked account?",
+        a: "As soon as you have your admission, or earlier if your visa appointment is close. Opening the account and transferring the money can take time.",
+      },
+    ],
+    sources: [
+      { label: "Federal Foreign Office — Visa for study", url: "https://www.auswaertiges-amt.de/en/visa-service" },
+      { label: "DAAD — Plan your studies", url: "https://www.daad.de/en/study-and-research-in-germany/plan-your-studies/" },
+      { label: "Make it in Germany — Studying", url: "https://www.make-it-in-germany.com/en/study-training/studies-in-germany" },
+    ],
+    relatedService: "study",
   },
 ];
 

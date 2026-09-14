@@ -12,7 +12,7 @@ import { pageMeta } from "@/i18n/meta";
 
 const copy = {
   en: {
-    title: "Germany Guides: Student Visa, Opportunity Card, Ausbildung",
+    title: "Germany Guides: Student Visa & Ausbildung",
     description: "Clear, source-linked guides for international students on the German student visa, the Opportunity Card and Ausbildung compared with university study.",
     eyebrow: "Guides",
     h1: "Germany, explained clearly.",
@@ -20,7 +20,7 @@ const copy = {
     read: "Read guide",
   },
   de: {
-    title: "Ratgeber: Studentenvisum, Chancenkarte, Ausbildung",
+    title: "Ratgeber: Studentenvisum, Chancenkarte & mehr",
     description: "Verständliche Ratgeber mit offiziellen Quellen: Studentenvisum, Chancenkarte und Ausbildung im Vergleich zum Studium in Deutschland.",
     eyebrow: "Ratgeber",
     h1: "Deutschland, klar erklärt.",

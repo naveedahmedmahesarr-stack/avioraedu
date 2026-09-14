@@ -38,7 +38,7 @@ export const markets: Market[] = [
     country: "Pakistan",
     inCountry: "Pakistan",
     iso: "PK",
-    metaTitle: "Study in Germany from Pakistan: Admission & Visa",
+    metaTitle: "Study in Germany from Pakistan: Visa Guide",
     description:
       "Study in Germany from Pakistan: how HSSC/FSc and Pakistani degrees are assessed, Studienkolleg options and the student visa from Islamabad or Karachi.",
     h1: "Studying in Germany from Pakistan",
@@ -72,7 +72,7 @@ export const markets: Market[] = [
     country: "India",
     inCountry: "India",
     iso: "IN",
-    metaTitle: "Study in Germany from India: APS, Admission & Visa",
+    metaTitle: "Study in Germany from India: APS & Visa",
     description:
       "Study in Germany from India: the mandatory APS certificate, how Class 12 and three-year degrees are assessed, and how the student visa process works.",
     h1: "Studying in Germany from India",
@@ -107,7 +107,7 @@ export const markets: Market[] = [
     country: "Bangladesh",
     inCountry: "Bangladesh",
     iso: "BD",
-    metaTitle: "Study in Germany from Bangladesh: Admission & Visa",
+    metaTitle: "Study in Germany from Bangladesh: Visa Guide",
     description:
       "Study in Germany from Bangladesh: HSC and bachelor's assessment, Studienkolleg, English-taught master's programs and the student visa from Dhaka.",
     h1: "Studying in Germany from Bangladesh",
@@ -139,7 +139,7 @@ export const markets: Market[] = [
     country: "United Arab Emirates",
     inCountry: "the UAE",
     iso: "AE",
-    metaTitle: "Study in Germany from the UAE & Dubai: Admission",
+    metaTitle: "Study in Germany from the UAE and Dubai",
     description:
       "Study in Germany from Dubai or Abu Dhabi: how A-levels, IB, American, CBSE and Pakistani certificates are assessed, and the visa for UAE residents.",
     h1: "Studying in Germany from the UAE and Dubai",
@@ -167,7 +167,7 @@ export const markets: Market[] = [
     country: "Saudi Arabia",
     inCountry: "Saudi Arabia",
     iso: "SA",
-    metaTitle: "Study in Germany from Saudi Arabia: Admission & Visa",
+    metaTitle: "Study in Germany from Saudi Arabia: Visa Guide",
     description:
       "Study in Germany from Riyadh, Jeddah or Dammam: how Saudi and international-school certificates are assessed and how the student visa works.",
     h1: "Studying in Germany from Saudi Arabia",

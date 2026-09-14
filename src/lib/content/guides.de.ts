@@ -5,7 +5,7 @@ import { guides, type Guide } from "./guides";
 const de: Record<string, Omit<Guide, "slug" | "reviewed" | "relatedService">> = {
   "germany-student-visa": {
     title: "Studentenvisum für Deutschland: Voraussetzungen und Ablauf",
-    metaTitle: "Studentenvisum Deutschland: Voraussetzungen & Ablauf",
+    metaTitle: "Studentenvisum Deutschland: Voraussetzungen",
     description:
       "So funktioniert das Studentenvisum für Deutschland: Zulassung, Sperrkonto, Krankenversicherung, APS wo nötig, die Schritte und die Zeit nach der Ankunft.",
     eyebrow: "Ratgeber · Studentenvisum",
@@ -62,7 +62,7 @@ const de: Record<string, Omit<Guide, "slug" | "reviewed" | "relatedService">> = 
   },
   "germany-opportunity-card": {
     title: "Die Chancenkarte (Opportunity Card) einfach erklärt",
-    metaTitle: "Chancenkarte Deutschland (Opportunity Card) – Überblick",
+    metaTitle: "Chancenkarte Deutschland: Überblick",
     description:
       "Was die Chancenkarte ist, wer sie beantragen kann, wie das Punktesystem funktioniert und worin sie sich von einem Studium in Deutschland unterscheidet.",
     eyebrow: "Ratgeber · Chancenkarte",
@@ -102,7 +102,7 @@ const de: Record<string, Omit<Guide, "slug" | "reviewed" | "relatedService">> = 
   },
   "ausbildung-germany": {
     title: "Ausbildung in Deutschland: die duale Berufsausbildung erklärt",
-    metaTitle: "Ausbildung in Deutschland: duale Berufsausbildung erklärt",
+    metaTitle: "Ausbildung in Deutschland: So funktioniert sie",
     description:
       "So funktioniert die duale Ausbildung in Deutschland: Betrieb und Berufsschule, Vergütung, Sprachanforderungen, Visum und der Vergleich mit dem Studium.",
     eyebrow: "Ratgeber · Ausbildung",
@@ -140,6 +140,77 @@ const de: Record<string, Omit<Guide, "slug" | "reviewed" | "relatedService">> = 
     sources: [
       { label: "Make it in Germany – Ausbildung in Deutschland", url: "https://www.make-it-in-germany.com/de/studium-ausbildung/ausbildung-in-deutschland" },
       { label: "Bundesagentur für Arbeit – Ausbildung", url: "https://www.arbeitsagentur.de/bildung/ausbildung" },
+    ],
+  },
+  "blocked-account-germany": {
+    title: "Sperrkonto für das Studium in Deutschland",
+    metaTitle: "Sperrkonto für Studierende in Deutschland",
+    description:
+      "Was ein Sperrkonto ist, warum für das Studentenvisum meist ein Finanzierungsnachweis nötig ist, wie die Auszahlung abläuft und welche Alternativen es gibt.",
+    eyebrow: "Ratgeber · Sperrkonto",
+    intro:
+      "Für ein Studentenvisum müssen Sie in der Regel nachweisen, dass Ihr Lebensunterhalt gesichert ist. Viele Studierende nutzen dafür ein Sperrkonto. Dieser Ratgeber erklärt den Ablauf ohne Beträge, die sich ändern – prüfen Sie den aktuellen Betrag immer bei den offiziellen Quellen unten.",
+    sections: [
+      {
+        heading: "Was ist ein Sperrkonto?",
+        body: [
+          "Ein Sperrkonto ist ein spezielles Konto für internationale Studierende. Sie zahlen den für ein Jahr erforderlichen Betrag vor dem Visumantrag ein. Nach der Ankunft in Deutschland wird Ihnen monatlich ein fester Betrag ausgezahlt, sodass das Geld Ihren Lebensunterhalt über die Zeit deckt.",
+          "Es ist einer der häufigsten Wege, den Finanzierungsnachweis zu erbringen, den deutsche Auslandsvertretungen für Studentenvisa verlangen.",
+        ],
+      },
+      {
+        heading: "Wie viel Geld ist erforderlich?",
+        body: [
+          "Der erforderliche Betrag wird von der Bundesregierung festgelegt und von Zeit zu Zeit angepasst. Weil er sich ändert, nennen wir hier keine Zahl. Prüfen Sie den aktuellen Betrag auf der Website des Auswärtigen Amts oder der für Sie zuständigen deutschen Auslandsvertretung, bevor Sie ein Konto eröffnen.",
+        ],
+      },
+      {
+        heading: "Der Ablauf Schritt für Schritt",
+        body: [],
+        bullets: [
+          "Einen Anbieter wählen, den die zuständige deutsche Auslandsvertretung akzeptiert",
+          "Das Konto online eröffnen und die Identitätsprüfung abschließen",
+          "Den erforderlichen Betrag überweisen – internationale Überweisungen können mehrere Tage dauern",
+          "Die Bestätigung erhalten und dem Visumantrag beilegen",
+          "Nach der Ankunft: Auszahlungen auf ein deutsches Bankkonto aktivieren und den monatlichen Betrag erhalten",
+        ],
+      },
+      {
+        heading: "Alternativen zum Sperrkonto",
+        body: ["Je nach Situation akzeptieren deutsche Auslandsvertretungen auch andere Finanzierungsnachweise, zum Beispiel:"],
+        bullets: [
+          "Eine Verpflichtungserklärung einer in Deutschland lebenden Person",
+          "Einen Stipendiennachweis, der den Lebensunterhalt abdeckt",
+        ],
+      },
+      {
+        heading: "Häufige Fehler vermeiden",
+        body: [],
+        bullets: [
+          "Weniger als den vollen aktuellen Betrag überweisen",
+          "Zu lange warten – Konto und Überweisung sollten vor dem Visumtermin abgeschlossen sein",
+          "Einen Anbieter nutzen, den die zuständige Auslandsvertretung nicht akzeptiert",
+          "Sperrkonto und Krankenversicherung verwechseln – die Versicherung ist eine eigene Voraussetzung",
+        ],
+      },
+    ],
+    faqs: [
+      {
+        q: "Ist ein Sperrkonto für das Studentenvisum Pflicht?",
+        a: "Nicht immer. Es ist der häufigste Finanzierungsnachweis, aber Auslandsvertretungen können Alternativen wie eine Verpflichtungserklärung oder ein Stipendium akzeptieren. Prüfen Sie die Anforderungen der für Sie zuständigen Vertretung.",
+      },
+      {
+        q: "Kann AVIORA EDU ein Sperrkonto für mich eröffnen?",
+        a: "Nein. Sie eröffnen das Konto selbst bei einem Anbieter. Wir erklären, wie der Finanzierungsnachweis in Ihren Visumantrag passt, und helfen Ihnen, vollständige Unterlagen vorzubereiten.",
+      },
+      {
+        q: "Wann sollte ich ein Sperrkonto eröffnen?",
+        a: "Sobald Sie Ihre Zulassung haben – oder früher, wenn Ihr Visumtermin bald ist. Kontoeröffnung und Überweisung können Zeit brauchen.",
+      },
+    ],
+    sources: [
+      { label: "Auswärtiges Amt – Visa und Aufenthalt", url: "https://www.auswaertiges-amt.de/de/service/visa-und-aufenthalt" },
+      { label: "DAAD – Studium planen (englisch)", url: "https://www.daad.de/en/study-and-research-in-germany/plan-your-studies/" },
     ],
   },
 };

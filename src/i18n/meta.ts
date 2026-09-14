@@ -11,6 +11,9 @@ export function pageMeta(locale: Locale, path: string, title: Localized | string
   const t = typeof title === "string" ? title : title[locale];
   const d = typeof description === "string" ? description : description[locale];
   const canonical = lp(locale, path);
+  // A page-level openGraph/twitter object replaces the parent's, which drops the root opengraph-image.
+  // Setting the shared brand card explicitly keeps a preview image on every page (resolved via metadataBase).
+  const image = { url: "/opengraph-image", width: 1200, height: 630, alt: "AVIORA EDU — Study in Germany & Europe", type: "image/png" };
   return {
     title: t,
     description: d,
@@ -23,8 +26,9 @@ export function pageMeta(locale: Locale, path: string, title: Localized | string
       url: canonical,
       locale: ogLocale[locale],
       alternateLocale: [ogLocale[locale === "de" ? "en" : "de"]],
+      images: [image],
     },
-    twitter: { card: "summary_large_image", title: t, description: d },
+    twitter: { card: "summary_large_image", title: t, description: d, images: [image] },
     ...(opts.robots ? { robots: opts.robots } : {}),
   };
 }

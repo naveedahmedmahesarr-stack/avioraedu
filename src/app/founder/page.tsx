@@ -20,7 +20,7 @@ import { CITIES, project, routePath } from "@/lib/globe";
  */
 const copy = {
   en: {
-    title: "Naveed Ahmed — Founder & Lead Immigration Consultant",
+    title: "Naveed Ahmed – Founder & Education Consultant",
     description: "Meet Naveed Ahmed, founder of AVIORA EDU in Berlin: a German and Pakistani national with more than 10 years of experience in education consultancy.",
     eyebrow: "Founder",
     crumb: "Founder",
@@ -55,7 +55,7 @@ const copy = {
     cta: "Book a consultation with Naveed",
   },
   de: {
-    title: "Naveed Ahmed – Gründer von AVIORA EDU",
+    title: "Naveed Ahmed – Gründer & Bildungsberater",
     description: "Naveed Ahmed, Gründer von AVIORA EDU in Berlin: deutscher und pakistanischer Staatsangehöriger mit über 10 Jahren Erfahrung in der Bildungsberatung.",
     eyebrow: "Gründer",
     crumb: "Gründer",

@@ -16,7 +16,7 @@ const de: Record<string, Omit<Market, "slug" | "iso">> = {
   pakistan: {
     country: "Pakistan",
     inCountry: "Pakistan",
-    metaTitle: "Studium in Deutschland aus Pakistan: Zulassung & Visum",
+    metaTitle: "Aus Pakistan zum Studium nach Deutschland",
     description:
       "Studium in Deutschland aus Pakistan: Bewertung von HSSC/FSc und pakistanischen Abschlüssen, Studienkolleg und das Studentenvisum aus Islamabad oder Karatschi.",
     h1: "Studieren in Deutschland aus Pakistan",
@@ -48,7 +48,7 @@ const de: Record<string, Omit<Market, "slug" | "iso">> = {
   india: {
     country: "Indien",
     inCountry: "Indien",
-    metaTitle: "Studium in Deutschland aus Indien: APS, Zulassung, Visum",
+    metaTitle: "Aus Indien zum Studium nach Deutschland: APS",
     description:
       "Studium in Deutschland aus Indien: das verpflichtende APS-Zertifikat, die Bewertung von Class 12 und dreijährigem Bachelor und der Weg zum Studentenvisum.",
     h1: "Studieren in Deutschland aus Indien",
@@ -78,7 +78,7 @@ const de: Record<string, Omit<Market, "slug" | "iso">> = {
   bangladesh: {
     country: "Bangladesch",
     inCountry: "Bangladesch",
-    metaTitle: "Studium in Deutschland aus Bangladesch: Zulassung & Visum",
+    metaTitle: "Aus Bangladesch zum Studium nach Deutschland",
     description:
       "Studium in Deutschland aus Bangladesch: Bewertung von HSC und Bachelor, Studienkolleg, englischsprachige Masterstudiengänge und das Visum aus Dhaka.",
     h1: "Studieren in Deutschland aus Bangladesch",
@@ -134,7 +134,7 @@ const de: Record<string, Omit<Market, "slug" | "iso">> = {
   "saudi-arabia": {
     country: "Saudi-Arabien",
     inCountry: "Saudi-Arabien",
-    metaTitle: "Studium in Deutschland aus Saudi-Arabien: Zulassung & Visum",
+    metaTitle: "Aus Saudi-Arabien zum Studium nach Deutschland",
     description:
       "Studium in Deutschland aus Riad, Dschidda oder Dammam: wie saudische und internationale Schulzeugnisse bewertet werden und wie das Studentenvisum funktioniert.",
     h1: "Studieren in Deutschland aus Saudi-Arabien",
@@ -163,7 +163,7 @@ const de: Record<string, Omit<Market, "slug" | "iso">> = {
   qatar: {
     country: "Katar",
     inCountry: "Katar",
-    metaTitle: "Studium in Deutschland aus Katar: Zulassung & Visum",
+    metaTitle: "Aus Katar zum Studium nach Deutschland",
     description:
       "Studium in Deutschland aus Doha: Bewertung katarischer und internationaler Schulzeugnisse, das Studentenvisum für Einwohner und ein realistischer Zeitplan.",
     h1: "Studieren in Deutschland aus Katar",
@@ -192,7 +192,7 @@ const de: Record<string, Omit<Market, "slug" | "iso">> = {
   oman: {
     country: "Oman",
     inCountry: "Oman",
-    metaTitle: "Studium in Deutschland aus Oman: Zulassung & Visum",
+    metaTitle: "Aus Oman zum Studium nach Deutschland",
     description:
       "Studium in Deutschland aus Oman: Bewertung des General Education Diploma und internationaler Zeugnisse sowie das Studentenvisum aus Maskat.",
     h1: "Studieren in Deutschland aus Oman",
@@ -221,7 +221,7 @@ const de: Record<string, Omit<Market, "slug" | "iso">> = {
   bahrain: {
     country: "Bahrain",
     inCountry: "Bahrain",
-    metaTitle: "Studium in Deutschland aus Bahrain: Zulassung & Visum",
+    metaTitle: "Aus Bahrain zum Studium nach Deutschland",
     description:
       "Studium in Deutschland aus Bahrain: Bewertung bahrainischer und internationaler Schulzeugnisse und der Antrag auf ein Studentenvisum in Manama.",
     h1: "Studieren in Deutschland aus Bahrain",

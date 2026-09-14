@@ -125,7 +125,7 @@ export default async function GuidePage(props: PageProps<"/guides/[slug]">) {
             <nav aria-label={t.common.related} className="rounded-3xl border border-navy-900/10 bg-white p-7">
               <p className="eyebrow text-gold-600">{t.common.related}</p>
               <ul className="mt-4 space-y-3 text-sm">
-                {[{ href: "/study-in-germany", label: c.studyIn }, { href: "/how-it-works", label: c.process }, ...others.map((o) => ({ href: `/guides/${o.slug}`, label: o.title }))].map((x) => (
+                {[{ href: "/study-in-germany", label: c.studyIn }, { href: "/how-it-works", label: c.process }, { href: "/dream-stories", label: t.nav.dreamStories }, ...others.map((o) => ({ href: `/guides/${o.slug}`, label: o.title }))].map((x) => (
                   <li key={x.href}>
                     <Link href={lp(locale, x.href)} className="inline-flex items-start gap-2 text-navy-900 hover:text-gold-600">
                       <Icon name="arrowRight" className="mt-0.5 size-4 shrink-0" /> {x.label}

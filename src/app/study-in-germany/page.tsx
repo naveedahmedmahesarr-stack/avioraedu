@@ -21,7 +21,7 @@ import { trAll } from "@/i18n/content";
 
 const copy = {
   en: {
-    title: "Study in Germany — University Admission Consultant",
+    title: "Study in Germany: Universities & Admission",
     description: "Study in Germany with a Berlin-based education consultant: public university admission, tuition rules, English-taught programs, the student visa and arrival.",
     crumb: "Study in Germany",
     eyebrow: "Primary destination",
@@ -38,7 +38,7 @@ const copy = {
     serviceDesc: "Profile assessment, university and program selection, application documents, visa guidance and pre-departure support for studying in Germany. Admission and visa decisions are made by universities and authorities.",
   },
   de: {
-    title: "Studium in Deutschland – Beratung zur Hochschulzulassung",
+    title: "Studium in Deutschland: Hochschulen & Zulassung",
     description: "Studieren in Deutschland mit einer Bildungsberatung aus Berlin: Zulassung an staatlichen Hochschulen, Gebühren, englischsprachige Studiengänge und Visum.",
     crumb: "Studium in Deutschland",
     eyebrow: "Hauptstudienziel",

@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { connection } from "next/server";
 import { PageHeader } from "@/components/layout/PageHeader";
 import { ServicesList } from "@/components/sections/ServicesList";
@@ -17,6 +18,7 @@ const copy = {
     h1: "Six things we do, and do carefully.",
     intro: "Every service starts with the same question: what will actually get you admitted, and what is a waste of your time and money? Open any service to see exactly what's included.",
     note: "Universities decide on admission and German authorities decide on visas. We don't sell guarantees — we make sure your application is the best version of itself.",
+    stories: "Read student visa success stories",
   },
   de: {
     title: "Leistungen: Hochschulzulassung & Visumberatung",
@@ -25,6 +27,7 @@ const copy = {
     h1: "Sechs Leistungen – sorgfältig umgesetzt.",
     intro: "Jede Leistung beginnt mit derselben Frage: Was bringt Sie wirklich zur Zulassung – und was kostet nur Zeit und Geld? Öffnen Sie eine Leistung, um genau zu sehen, was enthalten ist.",
     note: "Über die Zulassung entscheiden die Hochschulen, über Visa die deutschen Behörden. Wir verkaufen keine Garantien – wir sorgen dafür, dass Ihre Bewerbung so stark wie möglich ist.",
+    stories: "Visum-Erfolgsgeschichten unserer Studierenden lesen",
   },
 };
 
@@ -55,6 +58,9 @@ export default async function ServicesPage() {
         <div className="container-x">
           <ServicesList />
           <p className="mt-10 max-w-2xl text-sm leading-relaxed text-stone">{c.note}</p>
+          <Link href={lp(locale, "/dream-stories")} className="link-underline mt-4 inline-flex items-center gap-2 text-sm font-semibold text-navy-900">
+            {c.stories}
+          </Link>
         </div>
       </section>
       <ConsultationCTA />

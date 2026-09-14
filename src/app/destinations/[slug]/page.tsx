@@ -21,7 +21,7 @@ async function getDestination(slug: string) {
 
 const copy = {
   en: { studyIn: (n: string) => `Study in ${n}`, eyebrow: (n: string) => `Study destination · ${n}`, destinations: "Destinations", benefits: "Study benefits", lifestyle: "Lifestyle", cities: "Major student cities", unis: "Universities", unisIn: (n: string) => `Universities in ${n}`, desc: (tag: string, n: string) => `${tag} Universities, study benefits and student life in ${n} for international students.`, notFound: "Destination not found" },
-  de: { studyIn: (n: string) => `Studieren in ${n}`, eyebrow: (n: string) => `Studienziel · ${n}`, destinations: "Studienziele", benefits: "Vorteile für Studierende", lifestyle: "Lebensgefühl", cities: "Wichtige Studentenstädte", unis: "Hochschulen", unisIn: (n: string) => `Hochschulen in ${n}`, desc: (tag: string, n: string) => `${tag} Hochschulen, Vorteile und Studierendenleben in ${n} für internationale Studierende.`, notFound: "Studienziel nicht gefunden" },
+  de: { studyIn: (n: string) => `Studieren in ${n}`, eyebrow: (n: string) => `Studienziel · ${n}`, destinations: "Studienziele", benefits: "Vorteile für Studierende", lifestyle: "Lebensgefühl", cities: "Wichtige Studentenstädte", unis: "Hochschulen", unisIn: (n: string) => `Hochschulen in ${n}`, desc: (tag: string, n: string) => `${tag} Hochschulen, Vorteile und Studierendenleben in ${n} im Überblick.`, notFound: "Studienziel nicht gefunden" },
 };
 
 export async function generateMetadata(props: PageProps<"/destinations/[slug]">): Promise<Metadata> {

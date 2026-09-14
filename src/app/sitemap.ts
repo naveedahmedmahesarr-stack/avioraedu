@@ -34,11 +34,14 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   ];
   const destinations = (await list("destinations", { publishedOnly: true })).filter((d) => d.slug !== "germany").map((d) => `/destinations/${d.slug}`);
   const abs = (p: string) => `${base}${p === "/" ? "" : p}`;
+  // Only real review dates are published as lastmod; pages without one omit it rather than guessing.
+  const reviewed: Record<string, string> = Object.fromEntries(guides.map((g) => [`/guides/${g.slug}`, g.reviewed]));
   return [...paths, ...destinations].flatMap((path) => {
     const languages = { en: abs(path), de: abs(lp("de", path)), "x-default": abs(path) };
     const priority = path === "/" ? 1 : ["/study-in-germany", "/services", "/student-support"].includes(path) ? 0.9 : path.startsWith("/study-in-germany/from") || path === "/founder" ? 0.8 : 0.7;
     return (["en", "de"] as const).map((l) => ({
       url: abs(lp(l, path)),
+      ...(reviewed[path] ? { lastModified: reviewed[path] } : {}),
       changeFrequency: "weekly" as const,
       priority,
       alternates: { languages },

@@ -12,7 +12,7 @@ import { trAll } from "@/i18n/content";
 
 const copy = {
   en: {
-    title: "How It Works — Applying to Universities in Germany",
+    title: "How to Apply to a German University",
     description: "Our nine-step process: consultation, profile assessment, university selection, documents, application, visa guidance, pre-departure and arrival.",
     eyebrow: "How it works",
     h1: "From first conversation to first semester.",
@@ -21,7 +21,7 @@ const copy = {
     faqTitle: "Common questions",
   },
   de: {
-    title: "Ablauf – Bewerbung an Hochschulen in Deutschland",
+    title: "So bewerben Sie sich an deutschen Hochschulen",
     description: "Unser Ablauf in neun Schritten: Beratung, Profilanalyse, Hochschulauswahl, Unterlagen, Bewerbung, Visum, Abreise und Ankunft.",
     eyebrow: "Ablauf",
     h1: "Vom ersten Gespräch bis zum ersten Semester.",
