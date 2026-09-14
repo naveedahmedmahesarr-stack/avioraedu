@@ -42,7 +42,7 @@ export async function ContactChannels() {
 }
 
 export async function ConsultationCTA({ defaultDestination }: { defaultDestination?: string }) {
-  const { t } = await getUi();
+  const [{ t }, settings] = await Promise.all([getUi(), getSettings()]);
   const c = t.cta;
   return (
     <section id="consultation" aria-labelledby="consultation-title" className="relative scroll-mt-20 overflow-hidden bg-navy-950 py-28 md:py-40 print:hidden">
@@ -68,7 +68,7 @@ export async function ConsultationCTA({ defaultDestination }: { defaultDestinati
           </div>
         </Reveal>
         <Reveal delay={120}>
-          <ConsultationForm defaultDestination={defaultDestination} />
+          <ConsultationForm defaultDestination={defaultDestination} whatsappNumber={settings.whatsappNumber} />
         </Reveal>
       </div>
     </section>

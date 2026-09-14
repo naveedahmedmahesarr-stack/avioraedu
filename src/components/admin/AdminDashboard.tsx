@@ -6,6 +6,7 @@ import type { CollectionName } from "@/lib/content/schemas";
 import { collectionMeta, emptyItem, type Field } from "./fields";
 import { Logo } from "@/components/brand/Logo";
 import { Icon } from "@/components/ui/Icon";
+import { RedactionUpload } from "./RedactionUpload";
 
 type Item = Record<string, unknown> & { id?: string; published?: boolean };
 const ORDER: CollectionName[] = ["submissions", "settings", "reviews", "dreamStories", "destinations", "universities", "faqs", "team", "homepage"];
@@ -146,6 +147,8 @@ function Editor({ name, item, onClose, onSaved }: { name: CollectionName; item: 
                       );
                     })}
                   </div>
+                ) : f.type === "media-redact" ? (
+                  <RedactionUpload value={String(v ?? "")} onChange={(x) => set(f.key, x)} />
                 ) : f.type === "media-image" || f.type === "media-video" ? (
                   <MediaField field={f} value={String(v ?? "")} onChange={(x) => set(f.key, x)} />
                 ) : (

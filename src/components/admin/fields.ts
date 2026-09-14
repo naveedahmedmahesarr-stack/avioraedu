@@ -1,7 +1,7 @@
 import type { CollectionName } from "@/lib/content/schemas";
 
 export type Field =
-  | { key: string; label: string; type: "text" | "textarea" | "url" | "number" | "bool" | "date" | "media-image" | "media-video" | "list"; help?: string }
+  | { key: string; label: string; type: "text" | "textarea" | "url" | "number" | "bool" | "date" | "media-image" | "media-video" | "media-redact" | "list"; help?: string }
   | { key: string; label: string; type: "select" | "multi"; options: string[]; help?: string };
 
 export const collectionMeta: Record<CollectionName, { label: string; titleKey: string; subtitleKey?: string; fields: Field[]; canCreate: boolean; single?: boolean }> = {
@@ -118,22 +118,27 @@ export const collectionMeta: Record<CollectionName, { label: string; titleKey: s
     ],
   },
   dreamStories: {
-    label: "Dream Stories",
+    label: "Dream Stories · Visa Success",
     titleKey: "studentName",
     subtitleKey: "university",
     canCreate: true,
     fields: [
-      { key: "studentName", label: "Student name", type: "text" },
+      { key: "studentName", label: "Student name (internal record)", type: "text", help: "Not shown publicly when a display name is set." },
+      { key: "displayName", label: "Public display name", type: "text", help: "Shown on the website, e.g. first name + initial (“Firstname L.”). Leave empty to show the student name — only if the student agreed in writing to publish their full name." },
       { key: "sourceCountry", label: "Source country", type: "select", options: ["Pakistan", "India", "Bangladesh", "United Arab Emirates", "Saudi Arabia", "Qatar", "Oman", "Bahrain", "Other"] },
       { key: "destination", label: "Destination", type: "select", options: ["Germany", "Italy", "Poland", "Portugal", "Austria"] },
-      { key: "university", label: "University", type: "text" },
-      { key: "program", label: "Program", type: "text" },
+      { key: "visaType", label: "Visa type", type: "text", help: "As stated on the visa, e.g. “National visa (D) – Study (§ 16b AufenthG)”." },
+      { key: "university", label: "University (only with permission)", type: "text" },
+      { key: "program", label: "Program (only with permission)", type: "text" },
       { key: "intake", label: "Intake", type: "text" },
-      { key: "photo", label: "Photo", type: "media-image" },
+      { key: "successYear", label: "Visa year", type: "text", help: "e.g. 2025" },
+      { key: "visaDocument", label: "Redacted visa document", type: "media-redact", help: "Choose the visa photo, cover every personal detail with black boxes, then upload. Only the redacted copy leaves your browser." },
+      { key: "photo", label: "Student photo (only with explicit permission)", type: "media-image", help: "Must not show another company's branding." },
       { key: "video", label: "Video", type: "media-video" },
-      { key: "story", label: "Story", type: "textarea" },
-      { key: "consentConfirmed", label: "Written consent obtained", type: "bool", help: "Required before publishing" },
-      { key: "verified", label: "Verified client", type: "bool" },
+      { key: "story", label: "Success story", type: "textarea", help: "Factual description of the case only — no guarantees, statistics or invented details." },
+      { key: "testimonial", label: "Student testimonial (optional)", type: "textarea", help: "Only the student's own words, verbatim. Leave empty if they did not provide one." },
+      { key: "consentConfirmed", label: "Written consent obtained", type: "bool", help: "Required: cases are never shown on the website without it." },
+      { key: "verified", label: "Verified case", type: "bool", help: "Shows the “Verified Student Success” badge. Only tick if you checked the visa and handled the case." },
       { key: "published", label: "Published", type: "bool" },
     ],
   },

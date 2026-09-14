@@ -8,8 +8,20 @@ import { getLocale } from "@/i18n/server";
 import { pageMeta } from "@/i18n/meta";
 
 const copy = {
-  en: { title: "Dream Stories", description: "Real stories of international students studying in Germany and Europe, shared with their consent.", h1: "Stories worth telling.", intro: "Photos, videos and stories from real students — published only with their consent." },
-  de: { title: "Erfolgsgeschichten", description: "Echte Geschichten internationaler Studierender in Deutschland und Europa – mit ihrer Zustimmung veröffentlicht.", h1: "Geschichten, die erzählt werden sollten.", intro: "Fotos, Videos und Geschichten echter Studierender – nur mit ihrer Zustimmung veröffentlicht." },
+  en: {
+    title: "Student Visa Success Stories",
+    description: "Real German student visa approvals of students advised by AVIORA EDU, published with written consent and with personal data redacted.",
+    h1: "Real students. Real visas.",
+    intro: "Every case below is a genuine visa approval of a student we advised. Personal data is redacted, and each story is published with the student's written consent.",
+    listTitle: "Student visa success cases",
+  },
+  de: {
+    title: "Visum-Erfolgsgeschichten",
+    description: "Echte Studentenvisa von Studierenden, die AVIORA EDU beraten hat – mit schriftlicher Zustimmung und geschwärzten persönlichen Daten veröffentlicht.",
+    h1: "Echte Studierende. Echte Visa.",
+    intro: "Jeder Fall ist ein echtes Visum einer Person, die wir beraten haben. Persönliche Daten sind geschwärzt; jede Geschichte erscheint mit schriftlicher Zustimmung.",
+    listTitle: "Visum-Erfolgsfälle",
+  },
 };
 
 export async function generateMetadata(): Promise<Metadata> {
@@ -25,8 +37,11 @@ export default async function DreamStoriesPage() {
   return (
     <>
       <PageHeader crumbs={[{ name: c.title, path: "/dream-stories" }]} eyebrow={c.title} title={c.h1} intro={c.intro} skyline="PT" />
-      <section className="bg-ivory py-20 md:py-28">
+      <section aria-labelledby="story-results" className="bg-ivory py-20 md:py-28">
         <div className="container-x">
+          <h2 id="story-results" className="sr-only">
+            {c.listTitle}
+          </h2>
           <DreamStories stories={stories} showLink={false} />
         </div>
       </section>

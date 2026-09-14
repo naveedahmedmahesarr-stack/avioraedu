@@ -19,6 +19,8 @@ export async function GET(req: Request, ctx: RouteContext<"/api/media/[file]">) 
     "Cache-Control": "public, max-age=31536000, immutable",
     "Accept-Ranges": "bytes",
     "X-Content-Type-Options": "nosniff",
+    // Uploaded files include redacted visa documents: keep them out of image search results.
+    "X-Robots-Tag": "noindex, noimageindex",
   };
   const range = req.headers.get("range");
   const m = range?.match(/bytes=(\d*)-(\d*)/);

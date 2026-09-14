@@ -64,14 +64,22 @@ export const universitySchema = z.object({
 export const dreamStorySchema = z.object({
   ...base,
   studentName: text(120).min(1),
+  /** Name shown publicly (e.g. first name + initial). Empty = studentName, only with consent to publish the full name. */
+  displayName: text(120).default(""),
   sourceCountry: text(80).min(1),
   destination: text(80).min(1),
+  visaType: text(80).default(""),
   university: text(160).default(""),
   program: text(160).default(""),
   intake: text(40).default(""),
+  successYear: text(10).default(""),
   photo: optionalUrl,
   video: optionalUrl,
+  /** Redacted copy only — redaction is burned in by the Admin editor before upload; originals are never stored. */
+  visaDocument: optionalUrl,
   story: text(6000).min(1),
+  /** The student's own words, verbatim. Empty = no testimonial shown. */
+  testimonial: text(2000).default(""),
   consentConfirmed: z.boolean().default(false),
   verified: z.boolean().default(false),
 });

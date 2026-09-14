@@ -6,6 +6,7 @@ import { consultationInputSchema } from "@/lib/content/schemas";
 import { Icon } from "@/components/ui/Icon";
 import { useLocale, useLp, useUi } from "@/i18n/LocaleProvider";
 import { term } from "@/i18n/content";
+import { whatsappLink } from "@/lib/config";
 
 // Stored values stay in English (Admin, email notifications); only the labels are translated.
 const COUNTRIES = ["Pakistan", "India", "Bangladesh", "United Arab Emirates", "Saudi Arabia", "Qatar", "Oman", "Bahrain", "Other"];
@@ -15,7 +16,8 @@ const INTAKES = ["Summer 2027", "Winter 2027/28", "Summer 2028", "Winter 2028/29
 
 type Status = "idle" | "submitting" | "success" | "error";
 
-export function ConsultationForm({ defaultDestination = "" }: { defaultDestination?: string }) {
+export function ConsultationForm({ defaultDestination = "", whatsappNumber = "" }: { defaultDestination?: string; whatsappNumber?: string }) {
+  const [sent, setSent] = useState<Record<string, unknown> | null>(null);
   const locale = useLocale();
   const ui = useUi();
   const t = ui.form;
@@ -66,6 +68,7 @@ export function ConsultationForm({ defaultDestination = "" }: { defaultDestinati
         setStatus("error");
         return;
       }
+      setSent(data);
       setStatus("success");
     } catch {
       setServerMessage(t.network);
@@ -74,6 +77,14 @@ export function ConsultationForm({ defaultDestination = "" }: { defaultDestinati
   }
 
   if (status === "success") {
+    // Optional follow-up on WhatsApp with a structured summary (no email or phone number in the message).
+    const v = (k: string) => String(sent?.[k] ?? "");
+    const wa = sent
+      ? whatsappLink(
+          whatsappNumber,
+          t.whatsappMessage({ name: v("fullName"), country: term(v("country"), locale), destination: term(v("destination"), locale), level: term(v("studyLevel"), locale), field: v("studyField"), intake: term(v("intake"), locale) }),
+        )
+      : null;
     return (
       <div role="status" className="animate-fade-up rounded-3xl border border-gold-300/20 bg-ivory p-10 text-center md:p-14">
         <span className="mx-auto inline-flex size-16 items-center justify-center rounded-full border border-gold-500/40 text-gold-600">
@@ -81,6 +92,11 @@ export function ConsultationForm({ defaultDestination = "" }: { defaultDestinati
         </span>
         <h3 className="mt-6 text-4xl text-navy-900">{t.successTitle}</h3>
         <p className="mx-auto mt-3 max-w-md leading-relaxed text-stone">{t.successBody}</p>
+        {wa && (
+          <a href={wa} target="_blank" rel="noopener noreferrer" className="btn btn-navy mt-8">
+            <Icon name="whatsapp" className="size-4" /> {t.whatsappCta}
+          </a>
+        )}
       </div>
     );
   }
