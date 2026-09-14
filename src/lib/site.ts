@@ -1,6 +1,6 @@
 import "server-only";
 import { cache } from "react";
-import { siteConfig } from "./config";
+import { resolveSiteUrl, siteConfig } from "./config";
 import { getSettings } from "./content/store";
 
 /**
@@ -9,7 +9,7 @@ import { getSettings } from "./content/store";
  */
 export const getSite = cache(async () => {
   const s = await getSettings();
-  const url = (s.siteUrl || siteConfig.url).replace(/\/$/, "");
+  const url = resolveSiteUrl(s.siteUrl, siteConfig.url);
   const social = {
     instagram: s.socialInstagram || siteConfig.social.instagram,
     facebook: s.socialFacebook || siteConfig.social.facebook,

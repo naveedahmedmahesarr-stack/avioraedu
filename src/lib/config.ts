@@ -3,9 +3,28 @@
  * business channel (phone, socials, domain) comes from environment variables.
  * Nothing is invented: unset values render a clear "configuration required" state.
  */
+/**
+ * Always returns a valid absolute origin, because `new URL()` (metadataBase, sitemap) throws on
+ * anything else. Accepts values entered without a protocol ("www.avioraedu.com"), ignores empty or
+ * malformed values, and falls back to Vercel's production domain, then localhost.
+ */
+export function resolveSiteUrl(...candidates: (string | undefined)[]) {
+  for (const raw of candidates) {
+    const value = raw?.trim();
+    if (!value) continue;
+    try {
+      const url = new URL(/^https?:\/\//i.test(value) ? value : `https://${value}`);
+      if (url.hostname.includes(".") || url.hostname === "localhost") return url.origin;
+    } catch {
+      // Malformed value: try the next candidate.
+    }
+  }
+  return "http://localhost:3000";
+}
+
 export const siteConfig = {
   name: "AVIORA EDU",
-  url: process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000",
+  url: resolveSiteUrl(process.env.NEXT_PUBLIC_SITE_URL, process.env.VERCEL_PROJECT_PRODUCTION_URL, process.env.VERCEL_URL),
   description:
     "Education consultancy for studying in Germany and Europe. Honest help with university admission, student visas and arrival for students from South Asia and the Gulf.",
   social: {
