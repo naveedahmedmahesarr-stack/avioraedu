@@ -10,6 +10,7 @@ import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { CookieBanner } from "@/components/layout/CookieBanner";
 import { WhatsAppButton } from "@/components/layout/WhatsAppButton";
+import { Analytics } from "@vercel/analytics/next";
 
 const cormorant = Cormorant_Garamond({
   variable: "--font-cormorant",
@@ -64,6 +65,7 @@ export default async function RootLayout({ children }: LayoutProps<"/">) {
           <Footer />
           <WhatsAppButton number={settings.whatsappNumber} message={waMessage} />
           <CookieBanner />
+          <Analytics />
         </LocaleProvider>
       </body>
     </html>
